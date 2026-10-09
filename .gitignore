@@ -1,0 +1,7 @@
+/.Build/
+/vendor/
+/var/
+/public/
+composer.lock
+.DS_Store
+.idea/
