@@ -46,6 +46,12 @@ All record types are Content Blocks in `ContentBlocks/RecordTypes/`, the FAQ ele
 - A property that EXT:schema does not know yet (schema.org "pending") is registered like `Classes/Schema/JobPostingAdditionalProperties.php`.
 - Run `typo3 content-blocks:lint` afterwards, on TYPO3 13 and 14. The CI does both. Content Blocks 1.6 is stricter in places, for example `size` must be 10 or more.
 
+## Settings
+
+| Setting | Default | Effect |
+| --- | --- | --- |
+| `hideWebPageTypeField` | on | Hides "Type of web page" of EXT:schema in the page properties. The column stays, existing values keep working. Flush caches after changing. |
+
 ## Recommended settings of EXT:schema
 
 - Disable "Automatic embedding of the WebPage schema" (`automaticWebPageSchemaGeneration`). Without own data the WebPage node stays empty, schematic outputs the types that carry content.

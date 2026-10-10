@@ -36,6 +36,9 @@
             <trans-unit id="preview.custom">
                 <source>Custom JSON-LD is set and replaces the structured data of this page.</source>
             </trans-unit>
+            <trans-unit id="config.hideWebPageTypeField">
+                <source>Hide the field "Type of web page" of EXT:schema in the page properties. Flush caches after changing.</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

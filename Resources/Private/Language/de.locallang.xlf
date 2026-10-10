@@ -47,6 +47,10 @@
                 <source>Custom JSON-LD is set and replaces the structured data of this page.</source>
                 <target>Eigenes JSON-LD ist gesetzt und ersetzt die strukturierten Daten dieser Seite.</target>
             </trans-unit>
+            <trans-unit id="config.hideWebPageTypeField">
+                <source>Hide the field "Type of web page" of EXT:schema in the page properties. Flush caches after changing.</source>
+                <target>Feld „Typ der Webseite“ von EXT:schema in den Seiteneigenschaften ausblenden. Nach dem Ändern Caches leeren.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

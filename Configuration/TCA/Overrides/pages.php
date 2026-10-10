@@ -1,6 +1,10 @@
 <?php
 
+use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationExtensionNotConfiguredException;
+use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationPathDoesNotExistException;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 defined('TYPO3') or die();
 
@@ -60,3 +64,38 @@ ExtensionManagementUtility::addToAllTCAtypes(
     'pages',
     '--div--;' . $ll . 'pages.tab, tx_schematic_organization, tx_schematic_entity, tx_schematic_json, tx_schematic_preview',
 );
+
+(static function (): void {
+    try {
+        $hide = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('schematic', 'hideWebPageTypeField');
+    } catch (ExtensionConfigurationExtensionNotConfiguredException|ExtensionConfigurationPathDoesNotExistException) {
+        $hide = true;
+    }
+    if (!$hide) {
+        return;
+    }
+
+    // schematic derives the type from the structured data record, so the web page type of EXT:schema
+    // only confuses editors. The column stays, existing values keep working.
+    $field = 'tx_schema_webpagetype';
+    $palette = 'tx_schema_structureddata';
+    $withoutField = static fn(string $showitem, string $name): string => implode(',', array_filter(
+        explode(',', $showitem),
+        static fn(string $item): bool => trim(explode(';', $item)[0]) !== $name
+            && !(str_starts_with(trim($item), '--palette--') && trim(explode(';', $item)[2] ?? '') === $name)
+    ));
+
+    if (isset($GLOBALS['TCA']['pages']['palettes'][$palette]['showitem'])) {
+        $remaining = $withoutField($GLOBALS['TCA']['pages']['palettes'][$palette]['showitem'], $field);
+        $GLOBALS['TCA']['pages']['palettes'][$palette]['showitem'] = $remaining;
+        // An empty palette would still render its headline.
+        if (trim(str_replace('--linebreak--', '', $remaining), " ,\t\n") === '') {
+            foreach ($GLOBALS['TCA']['pages']['types'] as $type => $configuration) {
+                $GLOBALS['TCA']['pages']['types'][$type]['showitem'] = $withoutField((string)($configuration['showitem'] ?? ''), $palette);
+            }
+        }
+    }
+    foreach ($GLOBALS['TCA']['pages']['types'] as $type => $configuration) {
+        $GLOBALS['TCA']['pages']['types'][$type]['showitem'] = $withoutField((string)($configuration['showitem'] ?? ''), $field);
+    }
+})();
