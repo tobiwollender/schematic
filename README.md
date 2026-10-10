@@ -86,7 +86,7 @@ The repository is private. Add it as a VCS repository in the project's `composer
 ```
 
 ```bash
-composer require tobiwollender/schematic:@dev
+composer require tobiwollender/schematic:^0.1
 ```
 
 Then add the site set `tobiwollender/schematic` to the site configuration and run `typo3 extension:setup`.
