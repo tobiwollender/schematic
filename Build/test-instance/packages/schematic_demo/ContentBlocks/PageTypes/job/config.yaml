@@ -8,13 +8,15 @@ fields:
     renderType: selectCheckBox
     items:
       - label: Vollzeit
-        value: FULL_TIME
+        value: vollzeit
       - label: Teilzeit
-        value: PART_TIME
+        value: teilzeit
       - label: Befristet
-        value: TEMPORARY
+        value: befristet
       - label: Praktikum
-        value: INTERN
+        value: praktikum
+      - label: Minijob
+        value: minijob
   - identifier: validUntil
     type: DateTime
     format: date

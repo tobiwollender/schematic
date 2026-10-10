@@ -62,14 +62,25 @@ final class ContentBlocksPageSchemaConfigProvider implements PageSchemaConfigPro
 
         $columns = $this->columnsByIdentifier((int)$doktype);
         $properties = [];
-        foreach ((array)($settings['properties'] ?? []) as $property => $field) {
-            $field = (string)$field;
+        $valueMaps = [];
+        foreach ((array)($settings['properties'] ?? []) as $property => $mapping) {
             $property = SchemaTypes::normalizeProperty($type, (string)$property);
+            // Short form "property: field", long form with "field" and "values" for select fields whose
+            // stored values differ from what schema.org expects.
+            $field = (string)(\is_array($mapping) ? ($mapping['field'] ?? '') : $mapping);
+            if ($field === '') {
+                continue;
+            }
             // Field identifiers from config.yaml are prefixed in the database; core page fields are not.
             $properties[$property] = str_starts_with($field, '@') ? $field : ($columns[$field] ?? $field);
+            if (\is_array($mapping) && \is_array($mapping['values'] ?? null)) {
+                foreach ($mapping['values'] as $from => $to) {
+                    $valueMaps[$property][(string)$from] = $to;
+                }
+            }
         }
 
-        return new PageSchemaConfig($type, (bool)($settings['locked'] ?? true), $properties, $contentBlock->getName());
+        return new PageSchemaConfig($type, (bool)($settings['locked'] ?? true), $properties, $contentBlock->getName(), $valueMaps);
     }
 
     /**

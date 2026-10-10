@@ -97,6 +97,9 @@ final readonly class SchemaGraphBuilder
                 continue;
             }
             $value = $this->normalizer->normalize('pages', $column, $context->page, $context, $property);
+            if ($value !== null && isset($config->valueMaps[$property])) {
+                $value = self::mapValue($value, $config->valueMaps[$property]);
+            }
             // Values from the page type win, so editors maintain each fact in one place only.
             if ($value !== null) {
                 $data[$property] = $value;
@@ -104,6 +107,21 @@ final readonly class SchemaGraphBuilder
         }
 
         return $this->assembler->pageType($type, $this->withPageFallbacks($type, $data, $context), $organization);
+    }
+
+    /**
+     * Unmapped values are dropped instead of being output as values schema.org does not know.
+     *
+     * @param array<string, mixed> $map
+     */
+    private static function mapValue(mixed $value, array $map): mixed
+    {
+        $lookup = static fn(mixed $item): mixed => $map[\is_bool($item) ? ($item ? '1' : '0') : (string)$item] ?? null;
+        if (!\is_array($value)) {
+            return $lookup($value);
+        }
+        $mapped = array_values(array_unique(array_filter(array_map($lookup, $value), static fn(mixed $item): bool => $item !== null), \SORT_REGULAR));
+        return $mapped === [] ? null : $mapped;
     }
 
     /**

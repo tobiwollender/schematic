@@ -4,5 +4,13 @@ locked: true
 properties:
   title: title
   description: teaser
-  employmentType: employmentType
+  # The page type stores its own values; schema.org expects fixed ones.
+  employmentType:
+    field: employmentType
+    values:
+      vollzeit: FULL_TIME
+      teilzeit: PART_TIME
+      befristet: TEMPORARY
+      praktikum: INTERN
+      minijob: PART_TIME
   validThrough: validUntil

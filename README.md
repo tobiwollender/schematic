@@ -34,6 +34,18 @@ properties:
   validThrough: validUntil
 ```
 
+If a select field of the page type stores its own values, translate them with the long form. Values without an entry are left out instead of being output as values schema.org does not know; duplicates are merged.
+
+```yaml
+properties:
+  employmentType:
+    field: employmentType
+    values:
+      vollzeit: FULL_TIME
+      teilzeit: PART_TIME
+      minijob: PART_TIME
+```
+
 Keys are schema.org property names, the same names the fields in `ContentBlocks/RecordTypes/` use. Values are field identifiers from the page type or core page columns. Values from the page type win over values from the structured data record, and mapped fields are hidden in the structured data form.
 
 ## Adding a field or a type
