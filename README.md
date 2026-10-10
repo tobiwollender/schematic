@@ -18,7 +18,7 @@ MVP for internal evaluation. Not for production use yet.
 | Page types with a fixed type | The type is preselected and locked. Fields the page type already has are hidden, editors only fill what is missing. |
 | Content element "FAQ" | Questions and answers, rendered as `<details>` and output as FAQPage. The template is `ContentBlocks/ContentElements/faq/templates/frontend.html` and can be overridden per project the Content Blocks way. |
 | Every page form, admins only | "Custom JSON-LD" for special cases. When filled, it replaces the page's own type and FAQ; the organization on the home page stays. It is output as its own script element, so any schema.org vocabulary works. TYPO3 discards invalid JSON on save and keeps the previous value. |
-| Every page form | A read-only JSON-LD preview of the saved state, with links to the Schema Markup Validator and the Rich Results Test. |
+| Every page form | A read-only JSON-LD preview of the saved state in the language of the edited page, with links to the Schema Markup Validator and the Rich Results Test. |
 
 ## Fixed types for Content Blocks page types
 

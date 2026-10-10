@@ -37,7 +37,7 @@ final class PreviewElement extends AbstractFormElement
         $l10nParent = (int)(\is_array($l10nParent) ? ($l10nParent[0]['uid'] ?? $l10nParent[0] ?? 0) : $l10nParent);
         $pageUid = $languageId > 0 && $l10nParent > 0 ? $l10nParent : (int)$row['uid'];
 
-        $context = $this->pageContextFactory->forBackendPreview($pageUid, $GLOBALS['TYPO3_REQUEST']);
+        $context = $this->pageContextFactory->forBackendPreview($pageUid, $languageId, $GLOBALS['TYPO3_REQUEST']);
         if ($context === null) {
             $result['html'] = $this->callout('warning', $this->label('preview.noSite'));
             return $result;

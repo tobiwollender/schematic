@@ -7,15 +7,20 @@ namespace TobiWollender\Schematic\Builder;
 use TobiWollender\Schematic\Model\PageContext;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\LanguageAspect;
+use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Exception\SiteNotFoundException;
 use TYPO3\CMS\Core\Http\NormalizedParams;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\SiteFinder;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 final readonly class PageContextFactory
 {
     public function __construct(
         private SiteFinder $siteFinder,
+        private Context $context,
     ) {}
 
     public function fromFrontendRequest(ServerRequestInterface $request): ?PageContext
@@ -35,7 +40,11 @@ final readonly class PageContextFactory
         );
     }
 
-    public function forBackendPreview(int $pageUid, ServerRequestInterface $request): ?PageContext
+    /**
+     * Builds the context the frontend would see for this page in the given language, so the preview of a
+     * translated page shows its translated values and URLs.
+     */
+    public function forBackendPreview(int $pageUid, int $languageId, ServerRequestInterface $request): ?PageContext
     {
         $page = BackendUtility::getRecord('pages', $pageUid);
         if ($page === null) {
@@ -46,7 +55,11 @@ final readonly class PageContextFactory
         } catch (SiteNotFoundException) {
             return null;
         }
-        return new PageContext($pageUid, $page, 0, $site, $this->baseUrl($site, $request), false);
+        if ($languageId > 0) {
+            $page = GeneralUtility::makeInstance(PageRepository::class, $this->context)
+                ->getPageOverlay($page, new LanguageAspect($languageId, $languageId, LanguageAspect::OVERLAYS_MIXED));
+        }
+        return new PageContext($pageUid, $page, $languageId, $site, $this->baseUrl($site, $request), false);
     }
 
     /**

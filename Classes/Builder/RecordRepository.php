@@ -6,6 +6,7 @@ namespace TobiWollender\Schematic\Builder;
 
 use TobiWollender\Schematic\Model\PageContext;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
@@ -125,9 +126,14 @@ final readonly class RecordRepository
      */
     private function overlay(string $table, array $row, PageContext $pageContext): ?array
     {
-        if (!$pageContext->frontend || $pageContext->languageId === 0) {
+        if ($pageContext->languageId === 0) {
             return $row;
         }
-        return GeneralUtility::makeInstance(PageRepository::class, $this->context)->getLanguageOverlay($table, $row);
+        // The frontend context already carries the site language with its fallback rules; the backend
+        // preview has none, so it asks for the language of the edited page explicitly.
+        $languageAspect = $pageContext->frontend
+            ? null
+            : new LanguageAspect($pageContext->languageId, $pageContext->languageId, LanguageAspect::OVERLAYS_MIXED);
+        return GeneralUtility::makeInstance(PageRepository::class, $this->context)->getLanguageOverlay($table, $row, $languageAspect);
     }
 }
