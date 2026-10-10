@@ -6,6 +6,9 @@
             <trans-unit id="title">
                 <source>Stellenanzeige</source>
             </trans-unit>
+            <trans-unit id="tabs.tabJob">
+                <source>Job</source>
+            </trans-unit>
             <trans-unit id="teaser.label">
                 <source>Kurzbeschreibung der Stelle</source>
             </trans-unit>
