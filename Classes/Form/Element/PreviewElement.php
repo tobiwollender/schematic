@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace TobiWollender\Schematic\Form\Element;
 
 use Brotkrueml\Schema\JsonLd\Renderer;
+use TobiWollender\Schematic\Builder\CustomJsonLd;
 use TobiWollender\Schematic\Builder\PageContextFactory;
 use TobiWollender\Schematic\Builder\SchemaGraphBuilder;
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
@@ -48,22 +49,21 @@ final class PreviewElement extends AbstractFormElement
             $message = sprintf($this->label($graph->config->locked ? 'preview.locked' : 'preview.preset'), $graph->config->type);
             $html .= $this->callout('info', $message . ' <code>' . htmlspecialchars($graph->config->source) . '</code>', false);
         }
-        if ($graph->types === []) {
+        if ($graph->types === [] && $graph->customJsonLd === null) {
             $result['html'] = $html . $this->callout('notice', $this->label('preview.empty'));
             return $result;
         }
 
-        $renderer = new Renderer();
-        $renderer->addType(...$graph->types);
-        $json = json_encode(
-            json_decode($renderer->render(), true, 512, \JSON_THROW_ON_ERROR),
-            \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE | \JSON_THROW_ON_ERROR
-        );
-        $rows = min(40, substr_count($json, "\n") + 2);
-
         $html .= '<p class="text-body-secondary">' . htmlspecialchars($this->label('preview.intro')) . '</p>';
-        $html .= '<textarea class="form-control font-monospace" readonly rows="' . $rows . '" style="font-size: 12px;">'
-            . htmlspecialchars($json) . '</textarea>';
+        if ($graph->customJsonLd !== null) {
+            $html .= $this->callout('warning', $this->label('preview.custom'));
+            $html .= $this->codeBlock(CustomJsonLd::encode($graph->customJsonLd, true));
+        }
+        if ($graph->types !== []) {
+            $renderer = new Renderer();
+            $renderer->addType(...$graph->types);
+            $html .= $this->codeBlock(CustomJsonLd::encode(json_decode($renderer->render(), true, 512, \JSON_THROW_ON_ERROR), true));
+        }
         $html .= '<p class="mt-2">'
             . '<a href="https://validator.schema.org/" target="_blank" rel="noopener noreferrer">' . htmlspecialchars($this->label('preview.validator')) . '</a>'
             . ' · <a href="https://search.google.com/test/rich-results?url=' . rawurlencode($this->pageUrl($graph->types)) . '" target="_blank" rel="noopener noreferrer">'
@@ -84,6 +84,13 @@ final class PreviewElement extends AbstractFormElement
             }
         }
         return '';
+    }
+
+    private function codeBlock(string $json): string
+    {
+        $rows = min(40, substr_count($json, "\n") + 2);
+        return '<textarea class="form-control font-monospace mb-2" readonly rows="' . $rows . '" style="font-size: 12px;">'
+            . htmlspecialchars($json) . '</textarea>';
     }
 
     private function callout(string $severity, string $message, bool $escape = true): string

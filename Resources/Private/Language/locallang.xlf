@@ -33,6 +33,9 @@
             <trans-unit id="preview.copy">
                 <source>Copy JSON-LD</source>
             </trans-unit>
+            <trans-unit id="preview.custom">
+                <source>Custom JSON-LD is set and replaces the structured data of this page.</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

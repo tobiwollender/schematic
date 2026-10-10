@@ -37,6 +37,16 @@ ExtensionManagementUtility::addTCAcolumns('pages', [
             'default' => 0,
         ],
     ],
+    'tx_schematic_json' => [
+        // Exclude field: only admins and groups explicitly granted it may enter raw JSON-LD.
+        'exclude' => true,
+        'label' => $ll . 'pages.tx_schematic_json',
+        'description' => $ll . 'pages.tx_schematic_json.description',
+        'config' => [
+            'type' => 'json',
+            'enableCodeEditor' => true,
+        ],
+    ],
     'tx_schematic_preview' => [
         'label' => $ll . 'pages.tx_schematic_preview',
         'config' => [
@@ -48,5 +58,5 @@ ExtensionManagementUtility::addTCAcolumns('pages', [
 
 ExtensionManagementUtility::addToAllTCAtypes(
     'pages',
-    '--div--;' . $ll . 'pages.tab, tx_schematic_organization, tx_schematic_entity, tx_schematic_preview',
+    '--div--;' . $ll . 'pages.tab, tx_schematic_organization, tx_schematic_entity, tx_schematic_json, tx_schematic_preview',
 );

@@ -102,6 +102,12 @@
             <trans-unit id="tx_schematic_entity">
                 <source>Structured data</source>
             </trans-unit>
+            <trans-unit id="pages.tx_schematic_json">
+                <source>Custom JSON-LD</source>
+            </trans-unit>
+            <trans-unit id="pages.tx_schematic_json.description">
+                <source>Only for special cases. Replaces the structured data of this page, including FAQ. The organization on the home page stays. Must match the visible content.</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -13,6 +13,7 @@ use TobiWollender\Schematic\Model\SchemaTypes;
 
 /**
  * Collects all structured data of one page: organization, the page's own type and FAQs.
+ * Custom JSON-LD entered by an admin replaces the page's own type and FAQs; the organization stays.
  *
  * Shared by the frontend and the backend preview so both always show the same result.
  */
@@ -31,6 +32,11 @@ final readonly class SchemaGraphBuilder
         $config = $this->configProvider->forPage($context->page);
 
         $organization = $this->organization($context, $types);
+
+        $customJsonLd = CustomJsonLd::fromPage($context->page);
+        if ($customJsonLd !== null) {
+            return new SchemaGraph($types, $config, $customJsonLd);
+        }
 
         $mainType = $this->mainType($context, $config, $organization);
         if ($mainType !== null) {

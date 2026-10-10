@@ -43,6 +43,10 @@
                 <source>Copy JSON-LD</source>
                 <target>JSON-LD kopieren</target>
             </trans-unit>
+            <trans-unit id="preview.custom">
+                <source>Custom JSON-LD is set and replaces the structured data of this page.</source>
+                <target>Eigenes JSON-LD ist gesetzt und ersetzt die strukturierten Daten dieser Seite.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -135,6 +135,14 @@
                 <source>Structured data</source>
                 <target>Strukturierte Daten</target>
             </trans-unit>
+            <trans-unit id="pages.tx_schematic_json">
+                <source>Custom JSON-LD</source>
+                <target>Eigenes JSON-LD</target>
+            </trans-unit>
+            <trans-unit id="pages.tx_schematic_json.description">
+                <source>Only for special cases. Replaces the structured data of this page, including FAQ. The organization on the home page stays. Must match the visible content.</source>
+                <target>Nur für Sonderfälle. Ersetzt die strukturierten Daten dieser Seite, auch die FAQ. Die Organisation auf der Startseite bleibt. Muss zum sichtbaren Inhalt passen.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
