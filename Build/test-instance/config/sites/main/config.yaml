@@ -1,0 +1,14 @@
+rootPageId: 1
+base: /
+websiteTitle: 'Muster GmbH'
+dependencies:
+  - tobiwollender/schematic-demo
+languages:
+  -
+    title: Deutsch
+    enabled: true
+    languageId: 0
+    base: /
+    locale: de_DE.UTF-8
+    navigationTitle: Deutsch
+    flag: de

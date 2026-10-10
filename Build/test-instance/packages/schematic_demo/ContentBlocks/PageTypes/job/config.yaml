@@ -1,0 +1,20 @@
+name: demo/job
+typeName: 1760100001
+fields:
+  - identifier: teaser
+    type: Textarea
+  - identifier: employmentType
+    type: Select
+    renderType: selectCheckBox
+    items:
+      - label: Vollzeit
+        value: FULL_TIME
+      - label: Teilzeit
+        value: PART_TIME
+      - label: Befristet
+        value: TEMPORARY
+      - label: Praktikum
+        value: INTERN
+  - identifier: validUntil
+    type: DateTime
+    format: date

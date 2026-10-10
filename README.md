@@ -1,27 +1,50 @@
 # schematic
 
-Editor-friendly schema.org structured data for TYPO3 13.4 LTS and 14.
+Editor-friendly schema.org structured data for TYPO3 13.4 LTS and 14.3 LTS.
 
-Editors maintain structured data in backend forms instead of pasting JSON-LD from external generators into HTML content elements. Type model and rendering come from [brotkrueml/schema](https://github.com/brotkrueml/schema); this extension adds the editor layer on top.
+Editors maintain structured data in backend forms instead of pasting JSON-LD from external generators into HTML content elements. Type model and JSON-LD rendering come from [brotkrueml/schema](https://github.com/brotkrueml/schema); this extension adds the editor layer on top.
 
 ## Status
 
-Phase 0 (spike). Internal evaluation, not for production use.
+MVP for internal evaluation. Not for production use yet.
 
-## Planned scope
+## What editors get
 
-- **Organization / LocalBusiness** as a record, linked from the root page. Full output on the home page, short `@id` reference on subpages where another type needs it (`hiringOrganization`, `publisher`, `organizer`).
-- **FAQ content element** with question/answer pairs. Its Fluid template is meant to be overridden per project.
-- **Mapping layer** that turns existing page properties and records (jobs, news, events) into schema.org types via site set configuration, so editors do not maintain data twice.
-- **Admin-only JSON-LD field** for edge cases and migrating existing HTML-element snippets.
+| Where | What |
+| --- | --- |
+| Root page → tab "Structured data" | Select the organization of the site. It is output in full (Organization or LocalBusiness plus WebSite) on the home page only. Subpages reference it as employer, publisher or organizer. |
+| Folder with records | The organization itself: name, logo, contact, address, social profiles, opening hours. |
+| Any page → tab "Structured data" | Pick a type freely: Article, BlogPosting, NewsArticle, Event or JobPosting. Empty fields fall back to page title, description, first page image and creation date. |
+| Page types with a fixed type | The type is preselected and locked. Fields the page type already has are hidden, editors only fill what is missing. |
+| Content element "FAQ" | Questions and answers, rendered as `<details>` and output as FAQPage. The Fluid template can be overridden per project. |
+| Every page form | A read-only JSON-LD preview of the saved state, with links to the Schema Markup Validator and the Rich Results Test. |
+
+## Fixed types for Content Blocks page types
+
+Put a `schema.yaml` next to the `config.yaml` of a Content Blocks page type. `content-blocks:lint` ignores this file, `config.yaml` itself stays untouched.
+
+```yaml
+type: JobPosting      # Article, BlogPosting, NewsArticle, Event or JobPosting
+locked: true          # false: only preselect the type, editors may change it
+properties:
+  title: title                     # core page field
+  description: teaser              # field identifier from config.yaml
+  employmentType: employmentType
+  validThrough: validUntil
+```
+
+Keys are schema.org property names. Values are field identifiers from the Content Block or core page columns. Values from the page type win over values from the structured data record. Supported property names per type are listed in `Classes/Builder/EntityFields.php`.
+
+Content Blocks is optional. Without it, only the free choice per page is available.
 
 ## Requirements
 
 - PHP 8.2+
-- TYPO3 13.4 LTS or 14.3+
+- TYPO3 13.4 LTS or 14.3 LTS
 - brotkrueml/schema 4.4+
+- optional: friendsoftypo3/content-blocks 1.6 (TYPO3 13) or 2.4 (TYPO3 14)
 
-## Installation
+## Installation in a project
 
 The repository is private. Add it as a VCS repository in the project's `composer.json`:
 
@@ -35,4 +58,31 @@ The repository is private. Add it as a VCS repository in the project's `composer
 composer require tobiwollender/schematic:@dev
 ```
 
-Then add the site set `tobiwollender/schematic` to the site configuration.
+Then add the site set `tobiwollender/schematic` to the site configuration and run `typo3 extension:setup`.
+
+## Test instance
+
+The repository contains a DDEV setup with TYPO3 14.3, Content Blocks and demo content.
+
+```bash
+ddev start
+ddev schematic-setup
+```
+
+`ddev schematic-setup` installs a fresh instance and can be run again at any time to reset it. The backend user is `admin`, the password is in `.ddev/commands/web/schematic-setup`.
+
+| Page | Shows |
+| --- | --- |
+| Startseite | LocalBusiness and WebSite from the organization record in "Stammdaten" |
+| Karriere → Werkstudent Marketing | Content Blocks page type "Stellenanzeige" with locked type JobPosting |
+| Blog → Strukturierte Daten in TYPO3 pflegen | Free choice: BlogPosting |
+| Tag der offenen Tür | Free choice: Event |
+| FAQ | FAQ content element, output as FAQPage |
+| Über uns | No structured data of its own, to try the free choice |
+
+To try TYPO3 13.4 instead:
+
+```bash
+ddev composer update -W --with typo3/cms-core:^13.4
+ddev schematic-setup
+```

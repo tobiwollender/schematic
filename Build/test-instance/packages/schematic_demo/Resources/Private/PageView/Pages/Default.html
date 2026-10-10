@@ -1,0 +1,13 @@
+<div style="max-width: 48rem; margin: 2rem auto; padding: 0 1rem; font-family: system-ui, sans-serif; line-height: 1.5;">
+    <nav style="display: flex; gap: 1rem; flex-wrap: wrap; border-bottom: 1px solid #ddd; padding-bottom: .5rem;">
+        <f:link.page pageUid="1">Startseite</f:link.page>
+        <f:for each="{mainMenu}" as="item">
+            <a href="{item.link}">{item.title}</a>
+        </f:for>
+    </nav>
+    <h1><f:cObject typoscriptObjectPath="lib.pageTitle" /></h1>
+    <f:cObject typoscriptObjectPath="lib.content" />
+    <p style="margin-top: 3rem; color: #666; font-size: .875rem;">
+        Testinstanz schematic. Die strukturierten Daten stehen im Seitenquelltext als <code>application/ld+json</code>.
+    </p>
+</div>

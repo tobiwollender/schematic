@@ -1,0 +1,5 @@
+name: tobiwollender/schematic-demo
+label: 'schematic demo site'
+dependencies:
+  - typo3/fluid-styled-content
+  - tobiwollender/schematic

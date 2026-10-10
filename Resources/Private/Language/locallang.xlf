@@ -2,6 +2,37 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="EXT:schematic/Resources/Private/Language/locallang.xlf" product-name="schematic">
         <header/>
-        <body/>
+        <body>
+            <trans-unit id="set.label">
+                <source>Structured data for editors</source>
+            </trans-unit>
+            <trans-unit id="preview.locked">
+                <source>This page type is set to %s. Fields from the page type are used automatically.</source>
+            </trans-unit>
+            <trans-unit id="preview.preset">
+                <source>This page type suggests %s.</source>
+            </trans-unit>
+            <trans-unit id="preview.intro">
+                <source>Saved state of this page. WebPage and breadcrumb are added in the frontend.</source>
+            </trans-unit>
+            <trans-unit id="preview.empty">
+                <source>No structured data for this page yet.</source>
+            </trans-unit>
+            <trans-unit id="preview.newPage">
+                <source>Save the page to see a preview.</source>
+            </trans-unit>
+            <trans-unit id="preview.noSite">
+                <source>This page does not belong to a site.</source>
+            </trans-unit>
+            <trans-unit id="preview.validator">
+                <source>Check in the Schema Markup Validator</source>
+            </trans-unit>
+            <trans-unit id="preview.richResults">
+                <source>Check in Google Rich Results Test (public pages only)</source>
+            </trans-unit>
+            <trans-unit id="preview.copy">
+                <source>Copy JSON-LD</source>
+            </trans-unit>
+        </body>
     </file>
 </xliff>

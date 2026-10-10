@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+## Description: Install a fresh TYPO3 test instance with demo content for schematic
+## Usage: schematic-setup
+## Example: ddev schematic-setup
+
+set -euo pipefail
+cd /var/www/html
+
+# Local test instance only. The backend login is admin with this password.
+ADMIN_PASSWORD='Test-49zTS39DoUXU!7'
+
+composer install --no-interaction --no-progress
+mysql -h db -u root -proot -e 'DROP DATABASE IF EXISTS db; CREATE DATABASE db; GRANT ALL ON db.* TO "db"@"%";'
+rm -rf config var .Build/public/fileadmin/*
+
+.Build/bin/typo3 setup \
+  --driver=mysqli --host=db --port=3306 --dbname=db --username=db --password=db \
+  --admin-username=admin --admin-user-password="${ADMIN_PASSWORD}" --admin-email=admin@example.test \
+  --project-name='schematic Testinstanz' --server-type=apache --force --no-interaction
+
+mkdir -p config/sites config/system
+cp -R Build/test-instance/config/sites/. config/sites/
+cp Build/test-instance/config/system/additional.php config/system/additional.php
+
+.Build/bin/typo3 extension:setup
+mysql -h db -u db -pdb db < Build/test-instance/seed.sql
+mkdir -p .Build/public/fileadmin/stammdaten
+cp Build/test-instance/fileadmin/stammdaten/* .Build/public/fileadmin/stammdaten/
+.Build/bin/typo3 language:update de || echo 'German language pack could not be downloaded, the backend stays English.'
+.Build/bin/typo3 cache:flush
+
+echo "Frontend: ${DDEV_PRIMARY_URL}/"
+echo "Backend:  ${DDEV_PRIMARY_URL}/typo3/ (user admin, password in .ddev/commands/web/schematic-setup)"

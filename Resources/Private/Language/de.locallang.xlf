@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="de" datatype="plaintext" original="EXT:schematic/Resources/Private/Language/locallang.xlf" product-name="schematic">
+        <header/>
+        <body>
+            <trans-unit id="set.label">
+                <source>Structured data for editors</source>
+                <target>Strukturierte Daten für Redakteure</target>
+            </trans-unit>
+            <trans-unit id="preview.locked">
+                <source>This page type is set to %s. Fields from the page type are used automatically.</source>
+                <target>Dieser Seitentyp ist als %s festgelegt. Felder des Seitentyps werden automatisch übernommen.</target>
+            </trans-unit>
+            <trans-unit id="preview.preset">
+                <source>This page type suggests %s.</source>
+                <target>Dieser Seitentyp schlägt %s vor.</target>
+            </trans-unit>
+            <trans-unit id="preview.intro">
+                <source>Saved state of this page. WebPage and breadcrumb are added in the frontend.</source>
+                <target>Gespeicherter Stand dieser Seite. WebPage und Breadcrumb ergänzt das Frontend zusätzlich.</target>
+            </trans-unit>
+            <trans-unit id="preview.empty">
+                <source>No structured data for this page yet.</source>
+                <target>Für diese Seite gibt es noch keine strukturierten Daten.</target>
+            </trans-unit>
+            <trans-unit id="preview.newPage">
+                <source>Save the page to see a preview.</source>
+                <target>Speichern Sie die Seite, um eine Vorschau zu sehen.</target>
+            </trans-unit>
+            <trans-unit id="preview.noSite">
+                <source>This page does not belong to a site.</source>
+                <target>Diese Seite gehört zu keiner Site.</target>
+            </trans-unit>
+            <trans-unit id="preview.validator">
+                <source>Check in the Schema Markup Validator</source>
+                <target>Im Schema Markup Validator prüfen</target>
+            </trans-unit>
+            <trans-unit id="preview.richResults">
+                <source>Check in Google Rich Results Test (public pages only)</source>
+                <target>Im Google Rich Results Test prüfen (nur öffentliche Seiten)</target>
+            </trans-unit>
+            <trans-unit id="preview.copy">
+                <source>Copy JSON-LD</source>
+                <target>JSON-LD kopieren</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,7 +1,6 @@
 /.Build/
-/vendor/
+/config/
 /var/
-/public/
 composer.lock
 .DS_Store
 .idea/

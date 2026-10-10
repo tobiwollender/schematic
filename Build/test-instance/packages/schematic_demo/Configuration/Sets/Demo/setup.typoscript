@@ -1,0 +1,21 @@
+lib.content = CONTENT
+lib.content {
+  table = tt_content
+  select {
+    orderBy = sorting
+    where = {#colPos}=0
+  }
+}
+
+lib.pageTitle = TEXT
+lib.pageTitle.data = page:title
+
+page = PAGE
+page {
+  10 = PAGEVIEW
+  10 {
+    paths.10 = EXT:schematic_demo/Resources/Private/PageView/
+    dataProcessing.10 = menu
+    dataProcessing.10.as = mainMenu
+  }
+}

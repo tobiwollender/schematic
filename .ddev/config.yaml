@@ -1,0 +1,11 @@
+name: schematic
+type: typo3
+docroot: .Build/public
+php_version: "8.3"
+webserver_type: apache-fpm
+database:
+  type: mariadb
+  version: "11.8"
+disable_settings_management: true
+web_environment:
+  - TYPO3_CONTEXT=Development

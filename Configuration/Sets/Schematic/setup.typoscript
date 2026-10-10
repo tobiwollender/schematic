@@ -1,0 +1,16 @@
+tt_content.schematic_faq =< lib.contentElement
+tt_content.schematic_faq {
+  templateName = Faq
+  templateRootPaths.1760 = EXT:schematic/Resources/Private/Templates/
+  dataProcessing.10 = database-query
+  dataProcessing.10 {
+    table = tx_schematic_faq_item
+    pidInList.field = pid
+    where = {#parentid} = ###parent###
+    markers.parent.data = field:_LOCALIZED_UID // field:uid
+    # Items of a translated element already point to the translated parent.
+    languageField = 0
+    orderBy = sorting
+    as = items
+  }
+}

@@ -1,0 +1,8 @@
+# Read by schematic: every page of this type is a JobPosting.
+type: JobPosting
+locked: true
+properties:
+  title: title
+  description: teaser
+  employmentType: employmentType
+  validThrough: validUntil

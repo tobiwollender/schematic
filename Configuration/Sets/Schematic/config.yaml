@@ -1,2 +1,4 @@
 name: tobiwollender/schematic
-label: 'Structured data for editors'
+label: 'LLL:EXT:schematic/Resources/Private/Language/locallang.xlf:set.label'
+optionalDependencies:
+  - typo3/fluid-styled-content
