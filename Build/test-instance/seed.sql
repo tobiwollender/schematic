@@ -45,3 +45,28 @@ INSERT INTO tx_schematic_faq_item (uid, pid, parentid, sorting, question, answer
 (3, 7, 1, 768, 'Bieten Sie Praktika an?', '<p>Ja, offene Praktika und Werkstudentenstellen stehen auf der Seite <strong>Karriere</strong>.</p>', UNIX_TIMESTAMP(), UNIX_TIMESTAMP());
 
 UPDATE be_users SET lang = 'de' WHERE username = 'admin';
+
+-- English translation of home, careers, job and FAQ page to check translated structured data.
+INSERT INTO pages (uid, pid, sorting, sys_language_uid, l10n_parent, l10n_source, title, slug, doktype, is_siteroot, description, tx_schematic_entity, demo_job_teaser, demo_job_employmentType, demo_job_validUntil, perms_userid, perms_user, perms_group, perms_everybody, crdate, tstamp) VALUES
+(101, 0, 256, 1, 1, 1, 'Home', '/', 1, 1, 'Muster GmbH from Regensburg: sample company for the schematic test instance.', 0, NULL, NULL, 0, 1, 31, 27, 0, UNIX_TIMESTAMP('2026-09-01'), UNIX_TIMESTAMP()),
+(102, 1, 256, 1, 2, 2, 'Careers', '/careers', 1, 0, 'Open positions at Muster GmbH.', 0, NULL, NULL, 0, 1, 31, 27, 0, UNIX_TIMESTAMP('2026-09-01'), UNIX_TIMESTAMP()),
+(103, 2, 256, 1, 3, 3, 'Working student marketing (m/f/d)', '/careers/working-student-marketing', 1760100001, 0, '', 1, 'You support our marketing team with social media, newsletter and website. 15 to 20 hours per week, flexible alongside your studies.', 'PART_TIME', UNIX_TIMESTAMP('2026-12-31'), 1, 31, 27, 0, UNIX_TIMESTAMP('2026-10-01'), UNIX_TIMESTAMP()),
+(107, 1, 1024, 1, 7, 7, 'FAQ', '/faq', 1, 0, 'Answers to frequently asked questions about Muster GmbH.', 0, NULL, NULL, 0, 1, 31, 27, 0, UNIX_TIMESTAMP('2026-09-01'), UNIX_TIMESTAMP());
+
+INSERT INTO tx_schematic_entity (uid, pid, parentid, sys_language_uid, l10n_parent, l10n_source, type, title, description, telephone, email, streetAddress, postalCode, addressLocality, addressRegion, addressCountry, sameAs, openingHours, crdate, tstamp) VALUES
+(11, 9, 0, 1, 1, 1, 'LocalBusiness', 'Muster GmbH', 'Sample company from Regensburg for consulting and service.', '+49 941 1234560', 'info@example.com', 'Musterstraße 1', '93047', 'Regensburg', 'Bavaria', 'DE', 'https://www.linkedin.com/company/example\nhttps://www.instagram.com/example', 'Mo-Fr 08:00-17:00', UNIX_TIMESTAMP(), UNIX_TIMESTAMP());
+
+INSERT INTO tx_schematic_entity (uid, pid, parentid, sys_language_uid, l10n_parent, l10n_source, type, streetAddress, postalCode, addressLocality, addressRegion, addressCountry, datePosted, identifier, directApply, salaryMin, salaryMax, salaryCurrency, salaryUnit, crdate, tstamp) VALUES
+(12, 3, 103, 1, 2, 2, 'JobPosting', 'Musterstraße 1', '93047', 'Regensburg', 'Bavaria', 'DE', UNIX_TIMESTAMP('2026-10-01'), 'MG-2026-014', 1, 15, 17, 'EUR', 'HOUR', UNIX_TIMESTAMP(), UNIX_TIMESTAMP());
+
+INSERT INTO sys_file_reference (uid, pid, uid_local, uid_foreign, tablenames, fieldname, sorting_foreign, sys_language_uid, tstamp, crdate) VALUES
+(2, 9, 1, 11, 'tx_schematic_entity', 'logo', 1, 1, UNIX_TIMESTAMP(), UNIX_TIMESTAMP());
+UPDATE tx_schematic_entity SET logo = 1 WHERE uid = 11;
+
+INSERT INTO tt_content (uid, pid, sorting, colPos, sys_language_uid, l18n_parent, l10n_source, CType, header, tx_schematic_faq_items, crdate, tstamp) VALUES
+(11, 7, 256, 0, 1, 1, 1, 'schematic_faq', 'Frequently asked questions', 3, UNIX_TIMESTAMP(), UNIX_TIMESTAMP());
+
+INSERT INTO tx_schematic_faq_item (uid, pid, parentid, sorting, sys_language_uid, l10n_parent, l10n_source, question, answer, crdate, tstamp) VALUES
+(11, 7, 11, 256, 1, 1, 1, 'Where can I find Muster GmbH?', '<p>At Musterstraße 1 in 93047 Regensburg, five minutes from the main station.</p>', UNIX_TIMESTAMP(), UNIX_TIMESTAMP()),
+(12, 7, 11, 512, 1, 2, 2, 'When can I reach you?', '<p>Monday to Friday from 8 am to 5 pm at +49 941 1234560.</p>', UNIX_TIMESTAMP(), UNIX_TIMESTAMP()),
+(13, 7, 11, 768, 1, 3, 3, 'Do you offer internships?', '<p>Yes, open internships and working student positions are listed on the <strong>Careers</strong> page.</p>', UNIX_TIMESTAMP(), UNIX_TIMESTAMP());

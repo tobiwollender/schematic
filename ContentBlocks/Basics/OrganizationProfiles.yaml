@@ -1,0 +1,7 @@
+identifier: tobiwollender/schematic-organization-profiles
+fields:
+  - identifier: sameAs
+    type: Textarea
+    rows: 4
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:same_as'
+    description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:same_as.description'

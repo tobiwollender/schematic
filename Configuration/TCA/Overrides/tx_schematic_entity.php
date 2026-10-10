@@ -8,6 +8,9 @@ defined('TYPO3') or die();
 // the core treats the table as workspace aware anyway and logs a deprecation otherwise.
 $GLOBALS['TCA']['tx_schematic_entity']['ctrl']['versioningWS'] = true;
 
+// Content Blocks names a shared table after one of its types; the table holds all of them.
+$GLOBALS['TCA']['tx_schematic_entity']['ctrl']['title'] = 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:tx_schematic_entity';
+
 // A new record starts without a type, so editors make a conscious choice instead of inheriting the first one.
 $GLOBALS['TCA']['tx_schematic_entity']['columns']['type']['label'] = 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:type';
 $GLOBALS['TCA']['tx_schematic_entity']['columns']['type']['onChange'] = 'reload';

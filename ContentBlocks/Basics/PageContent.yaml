@@ -1,0 +1,14 @@
+# Description and image of page related types; empty values fall back to the page.
+identifier: tobiwollender/schematic-page-content
+fields:
+  - identifier: description
+    type: Textarea
+    rows: 5
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:description'
+    description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:description.description'
+  - identifier: image
+    type: File
+    allowed: common-image-types
+    maxitems: 1
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:image'
+    description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:image.description'

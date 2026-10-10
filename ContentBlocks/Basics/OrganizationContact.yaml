@@ -1,0 +1,31 @@
+identifier: tobiwollender/schematic-organization-contact
+fields:
+  - identifier: description
+    type: Textarea
+    rows: 5
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:description'
+  - identifier: url
+    type: Link
+    allowedTypes:
+      - url
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:url'
+  - identifier: logo
+    type: File
+    allowed: common-image-types
+    maxitems: 1
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:logo'
+    description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:logo.description'
+  - identifier: image
+    type: File
+    allowed: common-image-types
+    maxitems: 1
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:image'
+  - identifier: contactPalette
+    type: Palette
+    fields:
+      - identifier: telephone
+        type: Text
+        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:telephone'
+      - identifier: email
+        type: Email
+        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:email'

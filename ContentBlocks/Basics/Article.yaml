@@ -1,0 +1,10 @@
+identifier: tobiwollender/schematic-article
+fields:
+  - identifier: author
+    type: Text
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:author_name'
+  - identifier: datePublished
+    type: DateTime
+    format: date
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:date_published'
+    description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:date_published.description'

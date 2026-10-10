@@ -1,7 +1,5 @@
 name: tobiwollender/schematic-faq
 typeName: schematic_faq
-title: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:tt_content.CType.schematic_faq'
-description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:tt_content.CType.schematic_faq.description'
 group: default
 prefixFields: false
 fields:
@@ -9,7 +7,6 @@ fields:
     useExistingField: true
   - identifier: tx_schematic_faq_items
     type: Collection
-    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:tt_content.tx_schematic_faq_items'
     table: tx_schematic_faq_item
     foreign_field: parentid
     labelField: question
@@ -22,9 +19,7 @@ fields:
         type: Text
         max: 512
         required: true
-        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:question'
       - identifier: answer
         type: Textarea
         enableRichtext: true
         required: true
-        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:answer'

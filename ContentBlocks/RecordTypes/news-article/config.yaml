@@ -1,5 +1,4 @@
 name: tobiwollender/schematic-news-article
-title: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:type.NewsArticle'
 table: tx_schematic_entity
 typeField: type
 typeName: NewsArticle
@@ -15,24 +14,7 @@ fields:
   - identifier: title
     type: Text
     max: 255
-    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:title.headline'
-    description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:title.description'
-  - identifier: description
-    type: Textarea
-    rows: 5
-    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:description'
-    description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:description.description'
-  - identifier: image
-    type: File
-    allowed: common-image-types
-    maxitems: 1
-    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:image'
-    description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:image.description'
-  - identifier: author
-    type: Text
-    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:author_name'
-  - identifier: datePublished
-    type: DateTime
-    format: date
-    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:date_published'
-    description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:date_published.description'
+  - identifier: tobiwollender/schematic-page-content
+    type: Basic
+  - identifier: tobiwollender/schematic-article
+    type: Basic

@@ -40,7 +40,8 @@ Keys are schema.org property names, the same names the fields in `ContentBlocks/
 All record types are Content Blocks in `ContentBlocks/RecordTypes/`, the FAQ element is in `ContentBlocks/ContentElements/faq/`. Tables, columns and forms are generated from these files.
 
 - Name a field after the schema.org property it fills, for example `identifier` or `directApply`. Simple values are passed on without PHP. Only nested structures such as address, salary, location and offers are built in `Classes/Builder/TypeAssembler.php`.
-- Labels live in `Resources/Private/Language/locallang_db.xlf` and `de.locallang_db.xlf` and are referenced with `LLL:` in the YAML.
+- Labels follow the Content Blocks convention: `language/labels.xlf` and `language/de.labels.xlf` in each block. Write the English label into the YAML, run `typo3 content-blocks:language:generate <name>`, remove the label from the YAML and add the German target.
+- Fields used by several types live in `ContentBlocks/Basics/` and take their labels from `Resources/Private/Language/locallang_db.xlf` via `LLL:`, so each translation exists once.
 - A property that EXT:schema does not know yet (schema.org "pending") is registered like `Classes/Schema/JobPostingAdditionalProperties.php`.
 - Run `typo3 content-blocks:lint` afterwards, on TYPO3 13 and 14. The CI does both. Content Blocks 1.6 is stricter in places, for example `size` must be 10 or more.
 
@@ -90,6 +91,7 @@ ddev schematic-setup
 | Tag der offenen Tür | Free choice: Event |
 | FAQ | FAQ content element, output as FAQPage |
 | Über uns | No structured data of its own, to try the free choice |
+| /en/… | English translations of home, careers, job and FAQ page |
 
 To try TYPO3 13.4 instead:
 

@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file datatype="plaintext" original="labels.xlf" source-language="en" target-language="de" product-name="tobiwollender/schematic-event">
+    <header/>
+    <body>
+      <trans-unit id="title">
+        <source>Event (Event)</source>
+        <target>Veranstaltung (Event)</target>
+      </trans-unit>
+      <trans-unit id="title.label">
+        <source>Event name</source>
+        <target>Name der Veranstaltung</target>
+      </trans-unit>
+      <trans-unit id="title.description">
+        <source>Leave empty to use the page title.</source>
+        <target>Leer lassen, dann wird der Seitentitel verwendet.</target>
+      </trans-unit>
+      <trans-unit id="startDate.label">
+        <source>Starts</source>
+        <target>Beginn</target>
+      </trans-unit>
+      <trans-unit id="endDate.label">
+        <source>Ends</source>
+        <target>Ende</target>
+      </trans-unit>
+      <trans-unit id="eventStatus.label">
+        <source>Status</source>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit id="eventStatus.items.EventScheduled.label">
+        <source>Scheduled</source>
+        <target>Findet statt</target>
+      </trans-unit>
+      <trans-unit id="eventStatus.items.EventPostponed.label">
+        <source>Postponed, new date open</source>
+        <target>Verschoben, neuer Termin offen</target>
+      </trans-unit>
+      <trans-unit id="eventStatus.items.EventRescheduled.label">
+        <source>Moved to a new date</source>
+        <target>Verlegt auf neuen Termin</target>
+      </trans-unit>
+      <trans-unit id="eventStatus.items.EventCancelled.label">
+        <source>Cancelled</source>
+        <target>Abgesagt</target>
+      </trans-unit>
+      <trans-unit id="eventAttendanceMode.label">
+        <source>Format</source>
+        <target>Format</target>
+      </trans-unit>
+      <trans-unit id="eventAttendanceMode.items.OfflineEventAttendanceMode.label">
+        <source>On site</source>
+        <target>Vor Ort</target>
+      </trans-unit>
+      <trans-unit id="eventAttendanceMode.items.OnlineEventAttendanceMode.label">
+        <source>Online</source>
+        <target>Online</target>
+      </trans-unit>
+      <trans-unit id="eventAttendanceMode.items.MixedEventAttendanceMode.label">
+        <source>Hybrid</source>
+        <target>Hybrid</target>
+      </trans-unit>
+      <trans-unit id="locationName.label">
+        <source>Venue</source>
+        <target>Veranstaltungsort</target>
+      </trans-unit>
+      <trans-unit id="onlineUrl.label">
+        <source>Online link</source>
+        <target>Online-Link</target>
+      </trans-unit>
+      <trans-unit id="palettes.offerPalette.label">
+        <source>Tickets</source>
+        <target>Tickets</target>
+      </trans-unit>
+      <trans-unit id="offerPrice.label">
+        <source>Price</source>
+        <target>Preis</target>
+      </trans-unit>
+      <trans-unit id="offerPrice.description">
+        <source>0 = free of charge.</source>
+        <target>0 = kostenlos.</target>
+      </trans-unit>
+      <trans-unit id="offerCurrency.label">
+        <source>Currency</source>
+        <target>Währung</target>
+      </trans-unit>
+      <trans-unit id="offerUrl.label">
+        <source>Ticket link</source>
+        <target>Ticket-Link</target>
+      </trans-unit>
+      <trans-unit id="performer.label">
+        <source>Speaker or performer</source>
+        <target>Referent:in oder Künstler:in</target>
+      </trans-unit>
+      <trans-unit id="performer.description">
+        <source>Name of the person who speaks or performs.</source>
+        <target>Name der Person, die spricht oder auftritt.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

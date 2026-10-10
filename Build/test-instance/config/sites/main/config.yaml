@@ -12,3 +12,12 @@ languages:
     locale: de_DE.UTF-8
     navigationTitle: Deutsch
     flag: de
+  -
+    title: English
+    enabled: true
+    languageId: 1
+    base: /en/
+    locale: en_US.UTF-8
+    navigationTitle: English
+    flag: gb
+    fallbackType: strict

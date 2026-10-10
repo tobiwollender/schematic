@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file datatype="plaintext" original="labels.xlf" source-language="en" product-name="tobiwollender/schematic-job-posting">
+    <header/>
+    <body>
+      <trans-unit id="title">
+        <source>Job posting (JobPosting)</source>
+      </trans-unit>
+      <trans-unit id="title.label">
+        <source>Job title</source>
+      </trans-unit>
+      <trans-unit id="title.description">
+        <source>Leave empty to use the page title.</source>
+      </trans-unit>
+      <trans-unit id="description.label">
+        <source>Job description</source>
+      </trans-unit>
+      <trans-unit id="description.description">
+        <source>Leave empty to use the page description.</source>
+      </trans-unit>
+      <trans-unit id="datePosted.label">
+        <source>Posted on</source>
+      </trans-unit>
+      <trans-unit id="datePosted.description">
+        <source>Leave empty to use the creation date of the page.</source>
+      </trans-unit>
+      <trans-unit id="validThrough.label">
+        <source>Application deadline</source>
+      </trans-unit>
+      <trans-unit id="employmentType.label">
+        <source>Employment type</source>
+      </trans-unit>
+      <trans-unit id="employmentType.items.FULL_TIME.label">
+        <source>Full-time</source>
+      </trans-unit>
+      <trans-unit id="employmentType.items.PART_TIME.label">
+        <source>Part-time</source>
+      </trans-unit>
+      <trans-unit id="employmentType.items.CONTRACTOR.label">
+        <source>Freelance</source>
+      </trans-unit>
+      <trans-unit id="employmentType.items.TEMPORARY.label">
+        <source>Temporary</source>
+      </trans-unit>
+      <trans-unit id="employmentType.items.INTERN.label">
+        <source>Internship</source>
+      </trans-unit>
+      <trans-unit id="employmentType.items.VOLUNTEER.label">
+        <source>Volunteer</source>
+      </trans-unit>
+      <trans-unit id="employmentType.items.OTHER.label">
+        <source>Other</source>
+      </trans-unit>
+      <trans-unit id="identifier.label">
+        <source>Reference number</source>
+      </trans-unit>
+      <trans-unit id="identifier.description">
+        <source>Internal job ID, e.g. from your applicant management system.</source>
+      </trans-unit>
+      <trans-unit id="remote.label">
+        <source>Remote work possible</source>
+      </trans-unit>
+      <trans-unit id="directApply.label">
+        <source>Apply directly on this page</source>
+      </trans-unit>
+      <trans-unit id="directApply.description">
+        <source>Active when applicants can apply on the website without detours.</source>
+      </trans-unit>
+      <trans-unit id="palettes.salaryPalette.label">
+        <source>Salary</source>
+      </trans-unit>
+      <trans-unit id="salaryMin.label">
+        <source>From</source>
+      </trans-unit>
+      <trans-unit id="salaryMax.label">
+        <source>To</source>
+      </trans-unit>
+      <trans-unit id="salaryCurrency.label">
+        <source>Currency</source>
+      </trans-unit>
+      <trans-unit id="salaryUnit.label">
+        <source>Per</source>
+      </trans-unit>
+      <trans-unit id="salaryUnit.items.HOUR.label">
+        <source>Hour</source>
+      </trans-unit>
+      <trans-unit id="salaryUnit.items.MONTH.label">
+        <source>Month</source>
+      </trans-unit>
+      <trans-unit id="salaryUnit.items.YEAR.label">
+        <source>Year</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

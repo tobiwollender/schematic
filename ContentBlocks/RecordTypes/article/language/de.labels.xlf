@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file datatype="plaintext" original="labels.xlf" source-language="en" target-language="de" product-name="tobiwollender/schematic-article">
+    <header/>
+    <body>
+      <trans-unit id="title">
+        <source>Article (Article)</source>
+        <target>Artikel (Article)</target>
+      </trans-unit>
+      <trans-unit id="title.label">
+        <source>Headline</source>
+        <target>Überschrift</target>
+      </trans-unit>
+      <trans-unit id="title.description">
+        <source>Leave empty to use the page title.</source>
+        <target>Leer lassen, dann wird der Seitentitel verwendet.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -3,65 +3,14 @@
     <file source-language="en" datatype="plaintext" original="EXT:schematic/Resources/Private/Language/locallang_db.xlf" product-name="schematic">
         <header/>
         <body>
-            <trans-unit id="tx_schematic_entity">
-                <source>Structured data</source>
-            </trans-unit>
-            <trans-unit id="tx_schematic_faq_item">
-                <source>FAQ entry</source>
-            </trans-unit>
             <trans-unit id="type">
                 <source>schema.org type</source>
             </trans-unit>
             <trans-unit id="type.choose">
                 <source>Choose a type …</source>
             </trans-unit>
-            <trans-unit id="type.group.content">
-                <source>Page content</source>
-            </trans-unit>
-            <trans-unit id="type.group.organization">
-                <source>Organization</source>
-            </trans-unit>
-            <trans-unit id="type.Article">
-                <source>Article</source>
-            </trans-unit>
-            <trans-unit id="type.BlogPosting">
-                <source>Blog post</source>
-            </trans-unit>
-            <trans-unit id="type.NewsArticle">
-                <source>News article</source>
-            </trans-unit>
-            <trans-unit id="type.Event">
-                <source>Event</source>
-            </trans-unit>
-            <trans-unit id="type.JobPosting">
-                <source>Job posting</source>
-            </trans-unit>
-            <trans-unit id="type.Organization">
-                <source>Organization</source>
-            </trans-unit>
-            <trans-unit id="type.LocalBusiness">
-                <source>Local business</source>
-            </trans-unit>
             <trans-unit id="type.locked">
                 <source>Set by the page type. Editors cannot change it.</source>
-            </trans-unit>
-            <trans-unit id="title">
-                <source>Title</source>
-            </trans-unit>
-            <trans-unit id="title.description">
-                <source>Leave empty to use the page title.</source>
-            </trans-unit>
-            <trans-unit id="title.headline">
-                <source>Headline</source>
-            </trans-unit>
-            <trans-unit id="title.job">
-                <source>Job title</source>
-            </trans-unit>
-            <trans-unit id="title.event">
-                <source>Event name</source>
-            </trans-unit>
-            <trans-unit id="title.name">
-                <source>Name</source>
             </trans-unit>
             <trans-unit id="description">
                 <source>Description</source>
@@ -96,23 +45,11 @@
             <trans-unit id="same_as.description">
                 <source>One URL per line.</source>
             </trans-unit>
-            <trans-unit id="opening_hours">
-                <source>Opening hours</source>
-            </trans-unit>
-            <trans-unit id="opening_hours.description">
-                <source>One line per rule, days as Mo Tu We Th Fr Sa Su.</source>
-            </trans-unit>
             <trans-unit id="palette.address">
                 <source>Address</source>
             </trans-unit>
             <trans-unit id="palette.jobLocation">
                 <source>Place of work</source>
-            </trans-unit>
-            <trans-unit id="palette.salary">
-                <source>Salary</source>
-            </trans-unit>
-            <trans-unit id="palette.offer">
-                <source>Tickets</source>
             </trans-unit>
             <trans-unit id="street">
                 <source>Street and number</source>
@@ -141,147 +78,6 @@
             <trans-unit id="date_published.description">
                 <source>Leave empty to use the creation date of the page.</source>
             </trans-unit>
-            <trans-unit id="date_posted">
-                <source>Posted on</source>
-            </trans-unit>
-            <trans-unit id="date_posted.description">
-                <source>Leave empty to use the creation date of the page.</source>
-            </trans-unit>
-            <trans-unit id="valid_through">
-                <source>Application deadline</source>
-            </trans-unit>
-            <trans-unit id="employment_type">
-                <source>Employment type</source>
-            </trans-unit>
-            <trans-unit id="employment_type.FULL_TIME">
-                <source>Full-time</source>
-            </trans-unit>
-            <trans-unit id="employment_type.PART_TIME">
-                <source>Part-time</source>
-            </trans-unit>
-            <trans-unit id="employment_type.CONTRACTOR">
-                <source>Freelance</source>
-            </trans-unit>
-            <trans-unit id="employment_type.TEMPORARY">
-                <source>Temporary</source>
-            </trans-unit>
-            <trans-unit id="employment_type.INTERN">
-                <source>Internship</source>
-            </trans-unit>
-            <trans-unit id="employment_type.VOLUNTEER">
-                <source>Volunteer</source>
-            </trans-unit>
-            <trans-unit id="employment_type.OTHER">
-                <source>Other</source>
-            </trans-unit>
-            <trans-unit id="remote">
-                <source>Remote work possible</source>
-            </trans-unit>
-            <trans-unit id="salary_min">
-                <source>From</source>
-            </trans-unit>
-            <trans-unit id="salary_max">
-                <source>To</source>
-            </trans-unit>
-            <trans-unit id="currency">
-                <source>Currency</source>
-            </trans-unit>
-            <trans-unit id="salary_unit">
-                <source>Per</source>
-            </trans-unit>
-            <trans-unit id="salary_unit.HOUR">
-                <source>Hour</source>
-            </trans-unit>
-            <trans-unit id="salary_unit.MONTH">
-                <source>Month</source>
-            </trans-unit>
-            <trans-unit id="salary_unit.YEAR">
-                <source>Year</source>
-            </trans-unit>
-            <trans-unit id="start_date">
-                <source>Starts</source>
-            </trans-unit>
-            <trans-unit id="end_date">
-                <source>Ends</source>
-            </trans-unit>
-            <trans-unit id="event_status">
-                <source>Status</source>
-            </trans-unit>
-            <trans-unit id="event_status.EventScheduled">
-                <source>Scheduled</source>
-            </trans-unit>
-            <trans-unit id="event_status.EventPostponed">
-                <source>Postponed</source>
-            </trans-unit>
-            <trans-unit id="event_status.EventRescheduled">
-                <source>Rescheduled</source>
-            </trans-unit>
-            <trans-unit id="event_status.EventCancelled">
-                <source>Cancelled</source>
-            </trans-unit>
-            <trans-unit id="attendance_mode">
-                <source>Format</source>
-            </trans-unit>
-            <trans-unit id="attendance_mode.OfflineEventAttendanceMode">
-                <source>On site</source>
-            </trans-unit>
-            <trans-unit id="attendance_mode.OnlineEventAttendanceMode">
-                <source>Online</source>
-            </trans-unit>
-            <trans-unit id="attendance_mode.MixedEventAttendanceMode">
-                <source>Hybrid</source>
-            </trans-unit>
-            <trans-unit id="location_name">
-                <source>Venue</source>
-            </trans-unit>
-            <trans-unit id="online_url">
-                <source>Online link</source>
-            </trans-unit>
-            <trans-unit id="offer_price">
-                <source>Price</source>
-            </trans-unit>
-            <trans-unit id="offer_price.description">
-                <source>0 = free of charge.</source>
-            </trans-unit>
-            <trans-unit id="offer_url">
-                <source>Ticket link</source>
-            </trans-unit>
-            <trans-unit id="identifier">
-                <source>Reference number</source>
-            </trans-unit>
-            <trans-unit id="identifier.description">
-                <source>Internal job ID, e.g. from your applicant management system.</source>
-            </trans-unit>
-            <trans-unit id="direct_apply">
-                <source>Apply directly on this page</source>
-            </trans-unit>
-            <trans-unit id="direct_apply.description">
-                <source>Active when applicants can apply on the website without detours.</source>
-            </trans-unit>
-            <trans-unit id="performer">
-                <source>Speaker or performer</source>
-            </trans-unit>
-            <trans-unit id="performer.description">
-                <source>Name of the person who speaks or performs.</source>
-            </trans-unit>
-            <trans-unit id="question">
-                <source>Question</source>
-            </trans-unit>
-            <trans-unit id="answer">
-                <source>Answer</source>
-            </trans-unit>
-            <trans-unit id="tt_content.CType.schematic_faq">
-                <source>FAQ</source>
-            </trans-unit>
-            <trans-unit id="tt_content.CType.schematic_faq.description">
-                <source>Questions and answers, also output as FAQPage structured data.</source>
-            </trans-unit>
-            <trans-unit id="tt_content.tx_schematic_faq_items">
-                <source>Questions</source>
-            </trans-unit>
-            <trans-unit id="pages.tab">
-                <source>Structured data</source>
-            </trans-unit>
             <trans-unit id="pages.tx_schematic_entity">
                 <source>Structured data for this page</source>
             </trans-unit>
@@ -299,6 +95,12 @@
             </trans-unit>
             <trans-unit id="pages.tx_schematic_preview">
                 <source>Preview</source>
+            </trans-unit>
+            <trans-unit id="pages.tab">
+                <source>Structured data</source>
+            </trans-unit>
+            <trans-unit id="tx_schematic_entity">
+                <source>Structured data</source>
             </trans-unit>
         </body>
     </file>

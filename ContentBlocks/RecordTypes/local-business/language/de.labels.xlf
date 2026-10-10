@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file datatype="plaintext" original="labels.xlf" source-language="en" target-language="de" product-name="tobiwollender/schematic-local-business">
+    <header/>
+    <body>
+      <trans-unit id="title">
+        <source>Local business (LocalBusiness)</source>
+        <target>Lokales Unternehmen (LocalBusiness)</target>
+      </trans-unit>
+      <trans-unit id="title.label">
+        <source>Name</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="openingHours.label">
+        <source>Opening hours</source>
+        <target>Öffnungszeiten</target>
+      </trans-unit>
+      <trans-unit id="openingHours.description">
+        <source>One line per rule, days as Mo Tu We Th Fr Sa Su.</source>
+        <target>Eine Zeile pro Regel, Wochentage als Mo Tu We Th Fr Sa Su.</target>
+      </trans-unit>
+      <trans-unit id="openingHours.placeholder">
+        <source>Mo-Fr 08:00-17:00</source>
+        <target>Mo-Fr 08:00-17:00</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

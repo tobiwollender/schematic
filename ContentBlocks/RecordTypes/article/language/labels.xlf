@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file datatype="plaintext" original="labels.xlf" source-language="en" product-name="tobiwollender/schematic-article">
+    <header/>
+    <body>
+      <trans-unit id="title">
+        <source>Article (Article)</source>
+      </trans-unit>
+      <trans-unit id="title.label">
+        <source>Headline</source>
+      </trans-unit>
+      <trans-unit id="title.description">
+        <source>Leave empty to use the page title.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
