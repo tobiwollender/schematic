@@ -246,6 +246,24 @@
             <trans-unit id="offer_url">
                 <source>Ticket link</source>
             </trans-unit>
+            <trans-unit id="identifier">
+                <source>Reference number</source>
+            </trans-unit>
+            <trans-unit id="identifier.description">
+                <source>Internal job ID, e.g. from your applicant management system.</source>
+            </trans-unit>
+            <trans-unit id="direct_apply">
+                <source>Apply directly on this page</source>
+            </trans-unit>
+            <trans-unit id="direct_apply.description">
+                <source>Active when applicants can apply on the website without detours.</source>
+            </trans-unit>
+            <trans-unit id="performer">
+                <source>Speaker or performer</source>
+            </trans-unit>
+            <trans-unit id="performer.description">
+                <source>Name of the person who speaks or performs.</source>
+            </trans-unit>
             <trans-unit id="question">
                 <source>Question</source>
             </trans-unit>

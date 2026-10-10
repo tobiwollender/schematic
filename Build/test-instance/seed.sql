@@ -11,11 +11,17 @@ INSERT INTO pages (uid, pid, sorting, title, slug, doktype, is_siteroot, descrip
 (8, 1, 1280, 'Über uns', '/ueber-uns', 1, 0, 'Seite ohne eigene strukturierte Daten.', 0, 0, NULL, NULL, 0, 1, 31, 27, 0, UNIX_TIMESTAMP('2026-09-01'), UNIX_TIMESTAMP()),
 (9, 1, 1536, 'Stammdaten', '/stammdaten', 254, 0, '', 0, 0, NULL, NULL, 0, 1, 31, 27, 0, UNIX_TIMESTAMP('2026-09-01'), UNIX_TIMESTAMP());
 
-INSERT INTO tx_schematic_entity (uid, pid, parentid, type, title, description, telephone, email, street, postal_code, locality, region, country, same_as, opening_hours, logo, author_name, date_published, date_posted, salary_min, salary_max, salary_unit, start_date, end_date, event_status, attendance_mode, location_name, crdate, tstamp) VALUES
-(1, 9, 0, 'LocalBusiness', 'Muster GmbH', 'Beispielunternehmen aus Regensburg für Beratung und Service.', '+49 941 1234560', 'info@example.com', 'Musterstraße 1', '93047', 'Regensburg', 'Bayern', 'DE', 'https://www.linkedin.com/company/example\nhttps://www.instagram.com/example', 'Mo-Fr 08:00-17:00', 1, '', 0, 0, 0, 0, 'YEAR', 0, 0, '', '', '', UNIX_TIMESTAMP(), UNIX_TIMESTAMP()),
-(2, 3, 3, 'JobPosting', '', '', '', '', 'Musterstraße 1', '93047', 'Regensburg', 'Bayern', 'DE', '', '', 0, '', 0, UNIX_TIMESTAMP('2026-10-01'), 15, 17, 'HOUR', 0, 0, '', '', '', UNIX_TIMESTAMP(), UNIX_TIMESTAMP()),
-(3, 5, 5, 'BlogPosting', '', '', '', '', '', '', '', '', '', '', '', 0, 'Alex Beispiel', UNIX_TIMESTAMP('2026-09-15'), 0, 0, 0, 'YEAR', 0, 0, '', '', '', UNIX_TIMESTAMP(), UNIX_TIMESTAMP()),
-(4, 6, 6, 'Event', '', '', '', '', 'Musterstraße 1', '93047', 'Regensburg', 'Bayern', 'DE', '', '', 0, '', 0, 0, 0, 0, 'YEAR', UNIX_TIMESTAMP('2026-11-20 10:00:00'), UNIX_TIMESTAMP('2026-11-20 16:00:00'), 'EventScheduled', 'OfflineEventAttendanceMode', 'Muster GmbH, Hauptsitz', UNIX_TIMESTAMP(), UNIX_TIMESTAMP());
+INSERT INTO tx_schematic_entity (uid, pid, parentid, type, title, description, telephone, email, streetAddress, postalCode, addressLocality, addressRegion, addressCountry, sameAs, openingHours, logo, crdate, tstamp) VALUES
+(1, 9, 0, 'LocalBusiness', 'Muster GmbH', 'Beispielunternehmen aus Regensburg für Beratung und Service.', '+49 941 1234560', 'info@example.com', 'Musterstraße 1', '93047', 'Regensburg', 'Bayern', 'DE', 'https://www.linkedin.com/company/example\nhttps://www.instagram.com/example', 'Mo-Fr 08:00-17:00', 1, UNIX_TIMESTAMP(), UNIX_TIMESTAMP());
+
+INSERT INTO tx_schematic_entity (uid, pid, parentid, type, streetAddress, postalCode, addressLocality, addressRegion, addressCountry, datePosted, identifier, directApply, salaryMin, salaryMax, salaryCurrency, salaryUnit, crdate, tstamp) VALUES
+(2, 3, 3, 'JobPosting', 'Musterstraße 1', '93047', 'Regensburg', 'Bayern', 'DE', UNIX_TIMESTAMP('2026-10-01'), 'MG-2026-014', 1, 15, 17, 'EUR', 'HOUR', UNIX_TIMESTAMP(), UNIX_TIMESTAMP());
+
+INSERT INTO tx_schematic_entity (uid, pid, parentid, type, author, datePublished, crdate, tstamp) VALUES
+(3, 5, 5, 'BlogPosting', 'Alex Beispiel', UNIX_TIMESTAMP('2026-09-15'), UNIX_TIMESTAMP(), UNIX_TIMESTAMP());
+
+INSERT INTO tx_schematic_entity (uid, pid, parentid, type, streetAddress, postalCode, addressLocality, addressRegion, addressCountry, startDate, endDate, eventStatus, eventAttendanceMode, locationName, offerCurrency, performer, crdate, tstamp) VALUES
+(4, 6, 6, 'Event', 'Musterstraße 1', '93047', 'Regensburg', 'Bayern', 'DE', UNIX_TIMESTAMP('2026-11-20 10:00:00'), UNIX_TIMESTAMP('2026-11-20 16:00:00'), 'EventScheduled', 'OfflineEventAttendanceMode', 'Muster GmbH, Hauptsitz', 'EUR', 'Sam Muster', UNIX_TIMESTAMP(), UNIX_TIMESTAMP());
 
 INSERT INTO sys_file (uid, pid, storage, type, identifier, identifier_hash, folder_hash, extension, mime_type, name, sha1, size, creation_date, modification_date, tstamp) VALUES
 (1, 0, 1, 2, '/stammdaten/logo.png', 'a721544a5797a4f4bd2b993f44303863edfa3188', '8fcb5598893c33cc51de8f04d33fbcc681445b54', 'png', 'image/png', 'logo.png', '04ec95081ed219a1fd444918fbd875bcc6fa1cb2', 13146, UNIX_TIMESTAMP(), UNIX_TIMESTAMP(), UNIX_TIMESTAMP());

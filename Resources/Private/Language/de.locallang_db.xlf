@@ -327,6 +327,30 @@
                 <source>Ticket link</source>
                 <target>Ticket-Link</target>
             </trans-unit>
+            <trans-unit id="identifier">
+                <source>Reference number</source>
+                <target>Referenznummer</target>
+            </trans-unit>
+            <trans-unit id="identifier.description">
+                <source>Internal job ID, e.g. from your applicant management system.</source>
+                <target>Interne Stellen-ID, z. B. aus dem Bewerbermanagement.</target>
+            </trans-unit>
+            <trans-unit id="direct_apply">
+                <source>Apply directly on this page</source>
+                <target>Direkte Bewerbung auf dieser Seite</target>
+            </trans-unit>
+            <trans-unit id="direct_apply.description">
+                <source>Active when applicants can apply on the website without detours.</source>
+                <target>Aktivieren, wenn sich Bewerber ohne Umweg direkt auf der Website bewerben können.</target>
+            </trans-unit>
+            <trans-unit id="performer">
+                <source>Speaker or performer</source>
+                <target>Referent:in oder Künstler:in</target>
+            </trans-unit>
+            <trans-unit id="performer.description">
+                <source>Name of the person who speaks or performs.</source>
+                <target>Name der Person, die spricht oder auftritt.</target>
+            </trans-unit>
             <trans-unit id="question">
                 <source>Question</source>
                 <target>Frage</target>

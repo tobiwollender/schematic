@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace TobiWollender\Schematic\Form\FormDataProvider;
 
-use TobiWollender\Schematic\Builder\EntityFields;
+use TobiWollender\Schematic\Builder\EntitySchema;
 use TobiWollender\Schematic\Configuration\PageSchemaConfigProviderInterface;
 use TobiWollender\Schematic\Model\SchemaTypes;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
@@ -52,7 +52,7 @@ final readonly class PageTypeSchemaDefaults implements FormDataProviderInterface
         $result['processedTca']['columns']['type']['description'] = 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:type.locked';
         $this->limitTypes($result, [$config->type]);
 
-        $hidden = EntityFields::columnsForProperties($config->type, array_keys($config->properties));
+        $hidden = EntitySchema::columnsForProperties($config->type, array_keys($config->properties));
         if (isset($result['processedTca']['types'][$config->type]['showitem'])) {
             $result['processedTca']['types'][$config->type]['showitem'] = self::withoutFields($result['processedTca']['types'][$config->type]['showitem'], $hidden);
         }

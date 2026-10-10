@@ -1,0 +1,5 @@
+# Inline relation from pages.tx_schematic_entity.
+identifier: tobiwollender/schematic-parent
+fields:
+  - identifier: parentid
+    type: Pass

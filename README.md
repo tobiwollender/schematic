@@ -16,7 +16,7 @@ MVP for internal evaluation. Not for production use yet.
 | Folder with records | The organization itself: name, logo, contact, address, social profiles, opening hours. |
 | Any page → tab "Structured data" | Pick a type freely: Article, BlogPosting, NewsArticle, Event or JobPosting. Empty fields fall back to page title, description, first page image and creation date. |
 | Page types with a fixed type | The type is preselected and locked. Fields the page type already has are hidden, editors only fill what is missing. |
-| Content element "FAQ" | Questions and answers, rendered as `<details>` and output as FAQPage. The Fluid template can be overridden per project. |
+| Content element "FAQ" | Questions and answers, rendered as `<details>` and output as FAQPage. The template is `ContentBlocks/ContentElements/faq/templates/frontend.html` and can be overridden per project the Content Blocks way. |
 | Every page form | A read-only JSON-LD preview of the saved state, with links to the Schema Markup Validator and the Rich Results Test. |
 
 ## Fixed types for Content Blocks page types
@@ -33,16 +33,27 @@ properties:
   validThrough: validUntil
 ```
 
-Keys are schema.org property names. Values are field identifiers from the Content Block or core page columns. Values from the page type win over values from the structured data record. Supported property names per type are listed in `Classes/Builder/EntityFields.php`.
+Keys are schema.org property names, the same names the fields in `ContentBlocks/RecordTypes/` use. Values are field identifiers from the page type or core page columns. Values from the page type win over values from the structured data record, and mapped fields are hidden in the structured data form.
 
-Content Blocks is optional. Without it, only the free choice per page is available.
+## Adding a field or a type
+
+All record types are Content Blocks in `ContentBlocks/RecordTypes/`, the FAQ element is in `ContentBlocks/ContentElements/faq/`. Tables, columns and forms are generated from these files.
+
+- Name a field after the schema.org property it fills, for example `identifier` or `directApply`. Simple values are passed on without PHP. Only nested structures such as address, salary, location and offers are built in `Classes/Builder/TypeAssembler.php`.
+- Labels live in `Resources/Private/Language/locallang_db.xlf` and `de.locallang_db.xlf` and are referenced with `LLL:` in the YAML.
+- A property that EXT:schema does not know yet (schema.org "pending") is registered like `Classes/Schema/JobPostingAdditionalProperties.php`.
+- Run `typo3 content-blocks:lint` afterwards, on TYPO3 13 and 14. The CI does both. Content Blocks 1.6 is stricter in places, for example `size` must be 10 or more.
+
+## Recommended settings of EXT:schema
+
+- Disable "Automatic embedding of the WebPage schema" (`automaticWebPageSchemaGeneration`). Without own data the WebPage node stays empty, schematic outputs the types that carry content.
 
 ## Requirements
 
 - PHP 8.2+
 - TYPO3 13.4 LTS or 14.3 LTS
 - brotkrueml/schema 4.4+
-- optional: friendsoftypo3/content-blocks 1.6 (TYPO3 13) or 2.4 (TYPO3 14)
+- friendsoftypo3/content-blocks 1.6 (TYPO3 13) or 2.4 (TYPO3 14)
 
 ## Installation in a project
 

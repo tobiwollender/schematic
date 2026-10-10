@@ -1,0 +1,27 @@
+identifier: tobiwollender/schematic-job-location
+fields:
+  - identifier: jobLocationPalette
+    type: Palette
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:palette.jobLocation'
+    fields:
+      - identifier: streetAddress
+        type: Text
+        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:street'
+      - type: Linebreak
+      - identifier: postalCode
+        type: Text
+        size: 10
+        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:postal_code'
+      - identifier: addressLocality
+        type: Text
+        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:locality'
+      - type: Linebreak
+      - identifier: addressRegion
+        type: Text
+        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:region'
+      - identifier: addressCountry
+        type: Text
+        size: 10
+        placeholder: DE
+        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:country'
+        description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:country.description'

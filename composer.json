@@ -12,10 +12,10 @@
     "require": {
         "php": "^8.2",
         "brotkrueml/schema": "^4.4",
+        "friendsoftypo3/content-blocks": "^1.6 || ^2.4",
         "typo3/cms-core": "^13.4 || ^14.3"
     },
     "require-dev": {
-        "friendsoftypo3/content-blocks": "^1.6 || ^2.4",
         "tobiwollender/schematic-demo": "^1.0",
         "typo3/cms-backend": "^13.4 || ^14.3",
         "typo3/cms-belog": "^13.4 || ^14.3",
@@ -32,9 +32,6 @@
         "typo3/cms-seo": "^13.4 || ^14.3",
         "typo3/cms-setup": "^13.4 || ^14.3",
         "typo3/cms-tstemplate": "^13.4 || ^14.3"
-    },
-    "suggest": {
-        "friendsoftypo3/content-blocks": "Assign a fixed schema.org type to Content Blocks page types via schema.yaml"
     },
     "repositories": [
         {

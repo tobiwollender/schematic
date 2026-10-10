@@ -12,6 +12,15 @@ use Brotkrueml\Schema\Type\TypeFactory;
  */
 final readonly class TypeAssembler
 {
+    /**
+     * Fields that only feed nested types and must not be passed on as top-level properties.
+     */
+    private const NESTED_FIELDS = [
+        'streetAddress', 'postalCode', 'addressLocality', 'addressRegion', 'addressCountry',
+        'salaryMin', 'salaryMax', 'salaryCurrency', 'salaryUnit', 'remote',
+        'locationName', 'onlineUrl', 'offerPrice', 'offerCurrency', 'offerUrl',
+    ];
+
     public function __construct(
         private TypeFactory $typeFactory,
     ) {}
@@ -34,6 +43,7 @@ final readonly class TypeAssembler
         if ($address !== null) {
             $organization->setProperty('address', $address);
         }
+        $this->setRemaining($organization, $data);
         return $organization;
     }
 
@@ -110,6 +120,7 @@ final readonly class TypeAssembler
         if ($salary !== null) {
             $job->setProperty('baseSalary', $salary);
         }
+        $this->setRemaining($job, $data);
         return $job;
     }
 
@@ -154,6 +165,10 @@ final readonly class TypeAssembler
             $this->set($offer, ['url' => $data['offerUrl'] ?? null], ['url']);
             $event->setProperty('offers', $offer);
         }
+        if (!empty($data['performer'])) {
+            $event->setProperty('performer', $this->typeFactory->create('Person')->setProperty('name', (string)$data['performer']));
+        }
+        $this->setRemaining($event, $data);
         return $event;
     }
 
@@ -171,6 +186,7 @@ final readonly class TypeAssembler
         if ($organization !== null) {
             $article->setProperty('publisher', $organization);
         }
+        $this->setRemaining($article, $data);
         return $article;
     }
 
@@ -219,6 +235,28 @@ final readonly class TypeAssembler
         foreach ($properties as $property) {
             $value = $data[$property] ?? null;
             if ($value !== null && $value !== '' && $value !== []) {
+                $type->setProperty($property, $value);
+            }
+        }
+    }
+
+    /**
+     * Passes on every further field whose name is a property of the type, so a new simple field in a
+     * Content Blocks record type needs no PHP. Nested values are built explicitly above.
+     *
+     * @param array<string, mixed> $data
+     */
+    private function setRemaining(TypeInterface $type, array $data): void
+    {
+        foreach (array_diff_key($data, array_flip(self::NESTED_FIELDS)) as $property => $value) {
+            if ($value === null || $value === false || $value === '' || $value === []) {
+                continue;
+            }
+            if (!$type->hasProperty($property) || $type->getProperty($property) !== null) {
+                continue;
+            }
+            $isScalarList = \is_array($value) && array_filter($value, static fn($item): bool => !\is_scalar($item)) === [];
+            if (\is_scalar($value) || $isScalarList) {
                 $type->setProperty($property, $value);
             }
         }

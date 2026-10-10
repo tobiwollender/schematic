@@ -107,7 +107,7 @@ final readonly class SchemaGraphBuilder
     private function entityData(string $type, array $row, PageContext $context): array
     {
         $data = [];
-        foreach (EntityFields::forType($type) as $column => $property) {
+        foreach (EntitySchema::fieldsForType($type) as $column => $property) {
             $value = $this->normalizer->normalize('tx_schematic_entity', $column, $row, $context, $property);
             if ($value !== null) {
                 $data[$property] = $value;

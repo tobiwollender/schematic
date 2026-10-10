@@ -1,0 +1,101 @@
+name: tobiwollender/schematic-job-posting
+title: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:type.JobPosting'
+table: tx_schematic_entity
+typeField: type
+typeName: JobPosting
+prefixFields: false
+labelField: title
+fallbackLabelFields:
+  - type
+security:
+  ignorePageTypeRestriction: true
+fields:
+  - identifier: tobiwollender/schematic-parent
+    type: Basic
+  - identifier: title
+    type: Text
+    max: 255
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:title.job'
+    description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:title.description'
+  - identifier: description
+    type: Textarea
+    rows: 5
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:description'
+    description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:description.description'
+    enableRichtext: true
+  - identifier: jobDatesPalette
+    type: Palette
+    fields:
+      - identifier: datePosted
+        type: DateTime
+        format: date
+        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:date_posted'
+        description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:date_posted.description'
+      - identifier: validThrough
+        type: DateTime
+        format: date
+        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:valid_through'
+  - identifier: employmentType
+    type: Select
+    renderType: selectCheckBox
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:employment_type'
+    items:
+      - label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:employment_type.FULL_TIME'
+        value: FULL_TIME
+      - label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:employment_type.PART_TIME'
+        value: PART_TIME
+      - label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:employment_type.CONTRACTOR'
+        value: CONTRACTOR
+      - label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:employment_type.TEMPORARY'
+        value: TEMPORARY
+      - label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:employment_type.INTERN'
+        value: INTERN
+      - label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:employment_type.VOLUNTEER'
+        value: VOLUNTEER
+      - label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:employment_type.OTHER'
+        value: OTHER
+  - identifier: identifier
+    type: Text
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:identifier'
+    description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:identifier.description'
+  - identifier: tobiwollender/schematic-job-location
+    type: Basic
+  - identifier: remote
+    type: Checkbox
+    renderType: checkboxToggle
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:remote'
+  - identifier: directApply
+    type: Checkbox
+    renderType: checkboxToggle
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:direct_apply'
+    description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:direct_apply.description'
+  - identifier: salaryPalette
+    type: Palette
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:palette.salary'
+    fields:
+      - identifier: salaryMin
+        type: Number
+        format: decimal
+        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:salary_min'
+      - identifier: salaryMax
+        type: Number
+        format: decimal
+        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:salary_max'
+      - type: Linebreak
+      - identifier: salaryCurrency
+        type: Text
+        max: 3
+        default: EUR
+        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:currency'
+      - identifier: salaryUnit
+        type: Select
+        renderType: selectSingle
+        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:salary_unit'
+        items:
+          - label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:salary_unit.HOUR'
+            value: HOUR
+          - label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:salary_unit.MONTH'
+            value: MONTH
+          - label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:salary_unit.YEAR'
+            value: YEAR
+        default: YEAR

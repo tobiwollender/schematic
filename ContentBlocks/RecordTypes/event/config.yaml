@@ -1,0 +1,102 @@
+name: tobiwollender/schematic-event
+title: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:type.Event'
+table: tx_schematic_entity
+typeField: type
+typeName: Event
+prefixFields: false
+labelField: title
+fallbackLabelFields:
+  - type
+security:
+  ignorePageTypeRestriction: true
+fields:
+  - identifier: tobiwollender/schematic-parent
+    type: Basic
+  - identifier: title
+    type: Text
+    max: 255
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:title.event'
+    description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:title.description'
+  - identifier: description
+    type: Textarea
+    rows: 5
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:description'
+    description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:description.description'
+  - identifier: image
+    type: File
+    allowed: common-image-types
+    maxitems: 1
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:image'
+    description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:image.description'
+  - identifier: eventDatesPalette
+    type: Palette
+    fields:
+      - identifier: startDate
+        type: DateTime
+        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:start_date'
+      - identifier: endDate
+        type: DateTime
+        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:end_date'
+  - identifier: eventStatus
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:event_status'
+    items:
+      - label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:event_status.EventScheduled'
+        value: EventScheduled
+      - label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:event_status.EventPostponed'
+        value: EventPostponed
+      - label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:event_status.EventRescheduled'
+        value: EventRescheduled
+      - label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:event_status.EventCancelled'
+        value: EventCancelled
+    default: EventScheduled
+  - identifier: eventAttendanceMode
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:attendance_mode'
+    onChange: reload
+    items:
+      - label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:attendance_mode.OfflineEventAttendanceMode'
+        value: OfflineEventAttendanceMode
+      - label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:attendance_mode.OnlineEventAttendanceMode'
+        value: OnlineEventAttendanceMode
+      - label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:attendance_mode.MixedEventAttendanceMode'
+        value: MixedEventAttendanceMode
+    default: OfflineEventAttendanceMode
+  - identifier: locationName
+    type: Text
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:location_name'
+    displayCond: 'FIELD:eventAttendanceMode:!=:OnlineEventAttendanceMode'
+  - identifier: tobiwollender/schematic-address
+    type: Basic
+  - identifier: onlineUrl
+    type: Link
+    allowedTypes:
+      - url
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:online_url'
+    displayCond: 'FIELD:eventAttendanceMode:!=:OfflineEventAttendanceMode'
+  - identifier: offerPalette
+    type: Palette
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:palette.offer'
+    fields:
+      - identifier: offerPrice
+        type: Number
+        format: decimal
+        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:offer_price'
+        description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:offer_price.description'
+      - identifier: offerCurrency
+        type: Text
+        max: 3
+        default: EUR
+        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:currency'
+      - type: Linebreak
+      - identifier: offerUrl
+        type: Link
+        allowedTypes:
+          - url
+        label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:offer_url'
+  - identifier: performer
+    type: Text
+    label: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:performer'
+    description: 'LLL:EXT:schematic/Resources/Private/Language/locallang_db.xlf:performer.description'
