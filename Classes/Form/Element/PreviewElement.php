@@ -64,9 +64,10 @@ final class PreviewElement extends AbstractFormElement
             $renderer->addType(...$graph->types);
             $html .= $this->codeBlock(CustomJsonLd::encode(json_decode($renderer->render(), true, 512, \JSON_THROW_ON_ERROR), true));
         }
+        $pageUrl = rawurlencode($this->pageUrl($graph->types));
         $html .= '<p class="mt-2">'
-            . '<a href="https://validator.schema.org/" target="_blank" rel="noopener noreferrer">' . htmlspecialchars($this->label('preview.validator')) . '</a>'
-            . ' · <a href="https://search.google.com/test/rich-results?url=' . rawurlencode($this->pageUrl($graph->types)) . '" target="_blank" rel="noopener noreferrer">'
+            . '<a href="https://validator.schema.org/#url=' . $pageUrl . '" target="_blank" rel="noopener noreferrer">' . htmlspecialchars($this->label('preview.validator')) . '</a>'
+            . ' · <a href="https://search.google.com/test/rich-results?url=' . $pageUrl . '" target="_blank" rel="noopener noreferrer">'
             . htmlspecialchars($this->label('preview.richResults')) . '</a></p>';
 
         $result['html'] = '<div class="formengine-field-item t3js-formengine-field-item">' . $html . '</div>';

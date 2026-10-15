@@ -25,7 +25,7 @@
                 <source>This page does not belong to a site.</source>
             </trans-unit>
             <trans-unit id="preview.validator">
-                <source>Check in the Schema Markup Validator</source>
+                <source>Check in the Schema Markup Validator (public pages only)</source>
             </trans-unit>
             <trans-unit id="preview.richResults">
                 <source>Check in Google Rich Results Test (public pages only)</source>

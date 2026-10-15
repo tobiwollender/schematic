@@ -32,8 +32,8 @@
                 <target>Diese Seite gehört zu keiner Site.</target>
             </trans-unit>
             <trans-unit id="preview.validator">
-                <source>Check in the Schema Markup Validator</source>
-                <target>Im Schema Markup Validator prüfen</target>
+                <source>Check in the Schema Markup Validator (public pages only)</source>
+                <target>Im Schema Markup Validator prüfen (nur öffentliche Seiten)</target>
             </trans-unit>
             <trans-unit id="preview.richResults">
                 <source>Check in Google Rich Results Test (public pages only)</source>
