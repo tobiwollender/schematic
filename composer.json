@@ -2,7 +2,7 @@
     "name": "tobiwollender/schematic",
     "description": "Editor-friendly schema.org structured data for TYPO3, built on brotkrueml/schema",
     "type": "typo3-cms-extension",
-    "license": "proprietary",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Tobi Wollender",

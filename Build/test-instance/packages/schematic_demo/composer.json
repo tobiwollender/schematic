@@ -2,7 +2,7 @@
     "name": "tobiwollender/schematic-demo",
     "description": "Demo site package for the schematic test instance",
     "type": "typo3-cms-extension",
-    "license": "proprietary",
+    "license": "GPL-2.0-or-later",
     "version": "1.0.0",
     "require": {
         "friendsoftypo3/content-blocks": "^1.6 || ^2.4",

@@ -1,28 +1,77 @@
 # schematic
 
-Editor-friendly schema.org structured data for TYPO3 13.4 LTS and 14.3 LTS.
+Structured data (schema.org JSON-LD) for TYPO3, maintained by editors in normal backend forms instead of hand-written JSON.
 
-Editors maintain structured data in backend forms instead of pasting JSON-LD from external generators into HTML content elements. Type model and JSON-LD rendering come from [brotkrueml/schema](https://github.com/brotkrueml/schema); this extension adds the editor layer on top.
+schematic is built on [brotkrueml/schema](https://github.com/brotkrueml/schema), which renders the JSON-LD, and on [Content Blocks](https://github.com/FriendsOfTYPO3/content-blocks), which defines the forms. It adds the editor layer: which data exists, where editors maintain it and how page types fill it automatically.
 
-## Status
+## Contents
 
-MVP for internal evaluation. Not for production use yet.
+- [How it works](#how-it-works)
+- [For editors](#for-editors)
+- [For integrators](#for-integrators)
+- [For developers](#for-developers)
+- [Requirements](#requirements)
+- [License](#license)
 
-## What editors get
+## How it works
 
-| Where | What |
-| --- | --- |
-| Root page → tab "Structured data" | Select the organization of the site. It is output in full (Organization or LocalBusiness plus WebSite) on the home page only. Subpages reference it as employer, publisher or organizer. |
-| Folder with records | The organization itself: name, logo, contact, address, social profiles, opening hours. |
-| Any page → tab "Structured data" | Pick a type freely: Article, BlogPosting, NewsArticle, Event or JobPosting. Empty fields fall back to page title, description, first page image and creation date. |
-| Page types with a fixed type | The type is preselected and locked. Fields the page type already has are hidden, editors only fill what is missing. |
-| Content element "FAQ" | Questions and answers, rendered as `<details>` and output as FAQPage. The template is `ContentBlocks/ContentElements/faq/templates/frontend.html` and can be overridden per project the Content Blocks way. |
-| Every page form, admins only | "Custom JSON-LD" for special cases. When filled, it replaces the page's own type and FAQ; the organization on the home page stays. It is output as its own script element, so any schema.org vocabulary works. TYPO3 discards invalid JSON on save and keeps the previous value. |
-| Every page form | A read-only JSON-LD preview of the saved state in the language of the edited page, with links to the Schema Markup Validator and the Rich Results Test. |
+Every page can carry structured data from three sources:
 
-## Fixed types for Content Blocks page types
+| Source | Maintained in | Output |
+| --- | --- | --- |
+| Organization of the site | a record in a folder, selected on the root page | in full (Organization or LocalBusiness plus WebSite) on the home page only. Other pages reference it as employer, publisher or organizer. |
+| Structured data of the page | tab "Structured data" in the page properties, or automatically from the fields of a page type | Article, BlogPosting, NewsArticle, Event or JobPosting |
+| FAQ | content element "FAQ" | FAQPage |
 
-Put a `schema.yaml` next to the `config.yaml` of a Content Blocks page type. `content-blocks:lint` ignores this file, `config.yaml` itself stays untouched.
+Empty fields fall back to the page: title, description, first image of the page and creation date.
+
+Supported schema.org types: Organization, LocalBusiness, WebSite, Article, BlogPosting, NewsArticle, Event, JobPosting, FAQPage.
+
+## For editors
+
+**Organization.** Maintain name, logo, contact, address, social profiles and opening hours once as a record. Select it on the root page in the tab "Structured data".
+
+**Structured data of a page.** Open the page properties, tab "Structured data", add a record and pick the type. The form then shows the fields of that type. Leave a field empty to use the matching page value.
+
+**Page types with a fixed type.** On some page types, for example a job page, the type is set by the integrator. The type cannot be changed, and fields the page type already has are hidden. Only fill in what is missing.
+
+**FAQ.** Add the content element "FAQ" and enter questions and answers. They appear as expandable entries on the page and as FAQPage in the structured data.
+
+**Preview.** Every page form shows the JSON-LD of the saved state in the language of the page, with links to the Schema Markup Validator and the Google Rich Results Test. Both tools only work for publicly reachable pages.
+
+**Translations.** Records and FAQ entries are translated like any other content. Each language outputs its own values.
+
+## For integrators
+
+### Installation
+
+Check the [requirements](#requirements) first, then install via Composer:
+
+```bash
+composer require tobiwollender/schematic
+```
+
+If the package is not available on Packagist in your setup, add the repository as a VCS source in the project's `composer.json` first:
+
+```json
+"repositories": [
+    { "type": "vcs", "url": "https://github.com/tobiwollender/schematic.git" }
+]
+```
+
+Add the site set `tobiwollender/schematic` to the site configuration and run `typo3 extension:setup`. Then create the organization record in a folder and select it on the root page.
+
+### Configuration
+
+| Setting | Default | Effect |
+| --- | --- | --- |
+| `hideWebPageTypeField` | on | Hides "Type of web page" of EXT:schema in the page properties. The column stays, existing values keep working. Flush caches after changing. |
+
+Recommended setting of EXT:schema: disable "Automatic embedding of the WebPage schema" (`automaticWebPageSchemaGeneration`). Without data of its own, the WebPage node stays empty.
+
+### Fixed types for Content Blocks page types
+
+Put a `schema.yaml` next to the `config.yaml` of a Content Blocks page type. `content-blocks:lint` ignores this file.
 
 ```yaml
 type: JobPosting      # Article, BlogPosting, NewsArticle, Event or JobPosting
@@ -34,7 +83,11 @@ properties:
   validThrough: validUntil
 ```
 
-If a select field of the page type stores its own values, translate them with the long form. Values without an entry are left out instead of being output as values schema.org does not know; duplicates are merged.
+- Keys are schema.org property names, the same names the fields in `ContentBlocks/RecordTypes/` use.
+- Values are field identifiers from the page type or core page columns.
+- Values from the page type win over values from the structured data record. Mapped fields are hidden in the structured data form.
+
+If a select field stores its own values, translate them with the long form. Values without an entry are left out, duplicates are merged.
 
 ```yaml
 properties:
@@ -46,52 +99,17 @@ properties:
       minijob: PART_TIME
 ```
 
-Keys are schema.org property names, the same names the fields in `ContentBlocks/RecordTypes/` use. Values are field identifiers from the page type or core page columns. Values from the page type win over values from the structured data record, and mapped fields are hidden in the structured data form.
+### Custom JSON-LD for special cases
 
-## Adding a field or a type
+Admins find the field "Custom JSON-LD" in the tab "Structured data". Other editors need the exclude field to be granted. When filled, it replaces the structured data of the page and its FAQ; the organization on the home page stays. It is output as its own script element, so any schema.org vocabulary works. TYPO3 discards invalid JSON on save and keeps the previous value.
 
-All record types are Content Blocks in `ContentBlocks/RecordTypes/`, the FAQ element is in `ContentBlocks/ContentElements/faq/`. Tables, columns and forms are generated from these files.
+### FAQ template
 
-- Name a field after the schema.org property it fills, for example `identifier` or `directApply`. Simple values are passed on without PHP. Only nested structures such as address, salary, location and offers are built in `Classes/Builder/TypeAssembler.php`.
-- Labels follow the Content Blocks convention: `language/labels.xlf` and `language/de.labels.xlf` in each block. Write the English label into the YAML, run `typo3 content-blocks:language:generate <name>`, remove the label from the YAML and add the German target.
-- Fields used by several types live in `ContentBlocks/Basics/` and take their labels from `Resources/Private/Language/locallang_db.xlf` via `LLL:`, so each translation exists once.
-- A property that EXT:schema does not know yet (schema.org "pending") is registered like `Classes/Schema/JobPostingAdditionalProperties.php`.
-- Run `typo3 content-blocks:lint` afterwards, on TYPO3 13 and 14. The CI does both. Content Blocks 1.6 is stricter in places, for example `size` must be 10 or more.
+The template is `ContentBlocks/ContentElements/faq/templates/frontend.html` and can be overridden per project the Content Blocks way.
 
-## Settings
+## For developers
 
-| Setting | Default | Effect |
-| --- | --- | --- |
-| `hideWebPageTypeField` | on | Hides "Type of web page" of EXT:schema in the page properties. The column stays, existing values keep working. Flush caches after changing. |
-
-## Recommended settings of EXT:schema
-
-- Disable "Automatic embedding of the WebPage schema" (`automaticWebPageSchemaGeneration`). Without own data the WebPage node stays empty, schematic outputs the types that carry content.
-
-## Requirements
-
-- PHP 8.2+
-- TYPO3 13.4 LTS or 14.3 LTS
-- brotkrueml/schema 4.4+
-- friendsoftypo3/content-blocks 1.6 (TYPO3 13) or 2.4 (TYPO3 14)
-
-## Installation in a project
-
-The repository is private. Add it as a VCS repository in the project's `composer.json`:
-
-```json
-"repositories": [
-    { "type": "vcs", "url": "git@github.com:tobiwollender/schematic.git" }
-]
-```
-
-```bash
-composer require tobiwollender/schematic:^0.1
-```
-
-Then add the site set `tobiwollender/schematic` to the site configuration and run `typo3 extension:setup`.
-
-## Test instance
+### Test instance
 
 The repository contains a DDEV setup with TYPO3 14.3, Content Blocks and demo content.
 
@@ -100,21 +118,53 @@ ddev start
 ddev schematic-setup
 ```
 
-`ddev schematic-setup` installs a fresh instance and can be run again at any time to reset it. The backend user is `admin`, the password is in `.ddev/commands/web/schematic-setup`.
+`ddev schematic-setup` installs a fresh instance and can be run again at any time to reset it. Frontend: https://schematic.ddev.site, backend user `admin`, the password is in `.ddev/commands/web/schematic-setup`.
 
 | Page | Shows |
 | --- | --- |
 | Startseite | LocalBusiness and WebSite from the organization record in "Stammdaten" |
-| Karriere → Werkstudent Marketing | Content Blocks page type "Stellenanzeige" with locked type JobPosting |
-| Blog → Strukturierte Daten in TYPO3 pflegen | Free choice: BlogPosting |
-| Tag der offenen Tür | Free choice: Event |
+| Karriere → Werkstudent Marketing | Content Blocks page type "Stellenanzeige" with locked type JobPosting and mapped select values |
+| Blog → Strukturierte Daten in TYPO3 pflegen | free choice: BlogPosting |
+| Tag der offenen Tür | free choice: Event |
 | FAQ | FAQ content element, output as FAQPage |
-| Über uns | No structured data of its own, to try the free choice |
+| Über uns | no structured data of its own, to try the free choice |
 | /en/… | English translations of home, careers, job and FAQ page |
 
-To try TYPO3 13.4 instead:
+To check TYPO3 13.4, then switch back:
 
 ```bash
 ddev composer update -W --with typo3/cms-core:^13.4
 ddev schematic-setup
+ddev composer update -W
 ```
+
+### Adding a field or a type
+
+All record types are Content Blocks in `ContentBlocks/RecordTypes/`, the FAQ element is in `ContentBlocks/ContentElements/faq/`. Tables, columns and forms are generated from these files.
+
+- Name a field after the schema.org property it fills, for example `identifier` or `directApply`. Simple values are passed on without PHP. Only nested structures such as address, salary, location and offers are built in `Classes/Builder/TypeAssembler.php`.
+- Labels follow the Content Blocks convention: `language/labels.xlf` and `language/de.labels.xlf` in each block. Write the English label into the YAML, run `typo3 content-blocks:language:generate <name>`, remove the label from the YAML and add the German target.
+- Fields used by several types live in `ContentBlocks/Basics/` and take their labels from `Resources/Private/Language/locallang_db.xlf` via `LLL:`, so each translation exists once.
+- A property that EXT:schema does not know yet (schema.org "pending") is registered like `Classes/Schema/JobPostingAdditionalProperties.php`.
+- Run `typo3 content-blocks:lint` on TYPO3 13 and 14. Content Blocks 1.6 is stricter in places, for example `size` must be 10 or more.
+
+### Checks and releases
+
+- CI runs Composer validation, PHP lint and `content-blocks:lint` on TYPO3 13.4 and 14.3.
+- A release is a git tag `vX.Y.Z` on `main` plus a GitHub release with notes. The version comes from the tag only.
+- `.gitattributes` keeps `.ddev/`, `.github/` and `Build/` out of the archives Composer installs.
+
+## Requirements
+
+- TYPO3 13.4 LTS or 14.3 LTS
+- PHP 8.2+
+- [brotkrueml/schema](https://github.com/brotkrueml/schema) 4.4+
+- [friendsoftypo3/content-blocks](https://github.com/FriendsOfTYPO3/content-blocks) 1.6 (TYPO3 13) or 2.4 (TYPO3 14)
+
+## License
+
+GPL-2.0-or-later, see [LICENSE](LICENSE).
+
+## Credits
+
+Created by [Tobi Wollender](https://www.wollender.com).
