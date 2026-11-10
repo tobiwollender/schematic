@@ -41,6 +41,8 @@ Supported schema.org types: Organization, LocalBusiness, WebSite, Article, BlogP
 
 **Translations.** Records and FAQ entries are translated like any other content. Each language outputs its own values.
 
+**Workspaces.** Changes made in a workspace show up in the preview of that workspace only. The live site outputs them after publishing.
+
 ## For integrators
 
 ### Installation
@@ -129,6 +131,8 @@ ddev schematic-setup
 | FAQ | FAQ content element, output as FAQPage |
 | Über uns | no structured data of its own, to try the free choice |
 | /en/… | English translations of home, careers, job and FAQ page |
+
+The instance has a workspace "Entwurf". Structured data follows workspace versions in the backend preview and in the frontend workspace preview.
 
 To check TYPO3 13.4, then switch back:
 

@@ -35,7 +35,9 @@ final class PreviewElement extends AbstractFormElement
         $languageId = (int)(\is_array($row['sys_language_uid'] ?? null) ? ($row['sys_language_uid'][0] ?? 0) : ($row['sys_language_uid'] ?? 0));
         $l10nParent = $row['l10n_parent'] ?? 0;
         $l10nParent = (int)(\is_array($l10nParent) ? ($l10nParent[0]['uid'] ?? $l10nParent[0] ?? 0) : $l10nParent);
-        $pageUid = $languageId > 0 && $l10nParent > 0 ? $l10nParent : (int)$row['uid'];
+        // In a workspace the form edits the version; structured data hangs on the live uid.
+        $liveUid = (int)($row['t3ver_oid'] ?? 0) ?: (int)$row['uid'];
+        $pageUid = $languageId > 0 && $l10nParent > 0 ? $l10nParent : $liveUid;
 
         $context = $this->pageContextFactory->forBackendPreview($pageUid, $languageId, $GLOBALS['TYPO3_REQUEST']);
         if ($context === null) {

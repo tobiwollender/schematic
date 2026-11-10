@@ -70,3 +70,7 @@ INSERT INTO tx_schematic_faq_item (uid, pid, parentid, sorting, sys_language_uid
 (11, 7, 11, 256, 1, 1, 1, 'Where can I find Muster GmbH?', '<p>At Musterstraße 1 in 93047 Regensburg, five minutes from the main station.</p>', UNIX_TIMESTAMP(), UNIX_TIMESTAMP()),
 (12, 7, 11, 512, 1, 2, 2, 'When can I reach you?', '<p>Monday to Friday from 8 am to 5 pm at +49 941 1234560.</p>', UNIX_TIMESTAMP(), UNIX_TIMESTAMP()),
 (13, 7, 11, 768, 1, 3, 3, 'Do you offer internships?', '<p>Yes, open internships and working student positions are listed on the <strong>Careers</strong> page.</p>', UNIX_TIMESTAMP(), UNIX_TIMESTAMP());
+
+-- A workspace to check that structured data follows workspace versions.
+INSERT INTO sys_workspace (uid, pid, title) VALUES
+(1, 0, 'Entwurf');

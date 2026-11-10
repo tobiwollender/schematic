@@ -46,7 +46,7 @@ final readonly class PageContextFactory
      */
     public function forBackendPreview(int $pageUid, int $languageId, ServerRequestInterface $request): ?PageContext
     {
-        $page = BackendUtility::getRecord('pages', $pageUid);
+        $page = BackendUtility::getRecordWSOL('pages', $pageUid);
         if ($page === null) {
             return null;
         }

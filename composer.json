@@ -31,7 +31,8 @@
         "typo3/cms-rte-ckeditor": "^13.4 || ^14.3",
         "typo3/cms-seo": "^13.4 || ^14.3",
         "typo3/cms-setup": "^13.4 || ^14.3",
-        "typo3/cms-tstemplate": "^13.4 || ^14.3"
+        "typo3/cms-tstemplate": "^13.4 || ^14.3",
+        "typo3/cms-workspaces": "^13.4 || ^14.3"
     },
     "repositories": [
         {
