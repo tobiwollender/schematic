@@ -58,7 +58,7 @@
         <source>Price</source>
       </trans-unit>
       <trans-unit id="offerPrice.description">
-        <source>0 = free of charge.</source>
+        <source>0 = free of charge. Leave disabled if the price is unknown.</source>
       </trans-unit>
       <trans-unit id="offerCurrency.label">
         <source>Currency</source>

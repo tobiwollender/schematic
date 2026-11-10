@@ -57,6 +57,7 @@ fields:
       - identifier: offerPrice
         type: Number
         format: decimal
+        nullable: true
       - identifier: offerCurrency
         type: Text
         max: 3

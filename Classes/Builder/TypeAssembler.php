@@ -159,9 +159,12 @@ final readonly class TypeAssembler
             $event->setProperty('organizer', $organization);
         }
         if (isset($data['offerPrice']) || !empty($data['offerUrl'])) {
-            $offer = $this->typeFactory->create('Offer')
-                ->setProperty('price', (string)($data['offerPrice'] ?? 0))
-                ->setProperty('priceCurrency', (string)($data['offerCurrency'] ?? 'EUR'));
+            $offer = $this->typeFactory->create('Offer');
+            // A ticket link without a price must not claim the event is free.
+            if (isset($data['offerPrice'])) {
+                $offer->setProperty('price', (string)$data['offerPrice'])
+                    ->setProperty('priceCurrency', (string)($data['offerCurrency'] ?? 'EUR'));
+            }
             $this->set($offer, ['url' => $data['offerUrl'] ?? null], ['url']);
             $event->setProperty('offers', $offer);
         }

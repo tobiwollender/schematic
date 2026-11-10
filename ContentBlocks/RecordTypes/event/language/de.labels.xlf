@@ -76,8 +76,8 @@
         <target>Preis</target>
       </trans-unit>
       <trans-unit id="offerPrice.description">
-        <source>0 = free of charge.</source>
-        <target>0 = kostenlos.</target>
+        <source>0 = free of charge. Leave disabled if the price is unknown.</source>
+        <target>0 = kostenlos. Deaktiviert lassen, wenn der Preis nicht bekannt ist.</target>
       </trans-unit>
       <trans-unit id="offerCurrency.label">
         <source>Currency</source>

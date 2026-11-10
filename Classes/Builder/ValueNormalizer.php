@@ -33,7 +33,10 @@ final readonly class ValueNormalizer
             'datetime' => $this->dateTime($value, ($config['format'] ?? '') === 'date'),
             'select' => $this->select($value, $config),
             'check' => (bool)$value,
-            'number' => (float)$value > 0 ? (float)$value : null,
+            // Only a nullable column can tell an empty field from an entered 0.
+            'number' => ($config['nullable'] ?? false)
+                ? ($value === null ? null : (float)$value)
+                : ((float)$value > 0 ? (float)$value : null),
             'file' => $this->fileUrl($table, $column, $row, $context),
             default => trim((string)$value),
         };
