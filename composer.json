@@ -13,18 +13,18 @@
         "php": "^8.2",
         "brotkrueml/schema": "^4.4",
         "friendsoftypo3/content-blocks": "^1.6 || ^2.4",
-        "typo3/cms-core": "^13.4 || ^14.3"
+        "typo3/cms-backend": "^13.4 || ^14.3",
+        "typo3/cms-core": "^13.4 || ^14.3",
+        "typo3/cms-frontend": "^13.4 || ^14.3"
     },
     "require-dev": {
         "tobiwollender/schematic-demo": "^1.0",
-        "typo3/cms-backend": "^13.4 || ^14.3",
         "typo3/cms-belog": "^13.4 || ^14.3",
         "typo3/cms-beuser": "^13.4 || ^14.3",
         "typo3/cms-extbase": "^13.4 || ^14.3",
         "typo3/cms-filelist": "^13.4 || ^14.3",
         "typo3/cms-fluid": "^13.4 || ^14.3",
         "typo3/cms-fluid-styled-content": "^13.4 || ^14.3",
-        "typo3/cms-frontend": "^13.4 || ^14.3",
         "typo3/cms-info": "^13.4 || ^14.3",
         "typo3/cms-install": "^13.4 || ^14.3",
         "typo3/cms-lowlevel": "^13.4 || ^14.3",
