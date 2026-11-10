@@ -7,7 +7,7 @@ return [
         'tobiwollender/schematic/custom-json-ld' => [
             'target' => CustomJsonLdMiddleware::class,
             'before' => [
-                'typo3/cms-core/cache-timout',
+                'typo3/cms-core/cache-timeout',
             ],
             'after' => [
                 'typo3/cms-adminpanel/renderer',
