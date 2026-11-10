@@ -7,7 +7,8 @@ namespace TobiWollender\Schematic\Schema;
 use Brotkrueml\Schema\Core\AdditionalPropertiesInterface;
 
 /**
- * Google recommends directApply, but schema.org still lists it as pending, so EXT:schema does not know it yet.
+ * Properties Google uses for job postings that EXT:schema does not know: directApply is still pending at
+ * schema.org, applicantLocationRequirements is required for remote jobs.
  */
 final class JobPostingAdditionalProperties implements AdditionalPropertiesInterface
 {
@@ -18,6 +19,6 @@ final class JobPostingAdditionalProperties implements AdditionalPropertiesInterf
 
     public function getAdditionalProperties(): array
     {
-        return ['directApply'];
+        return ['applicantLocationRequirements', 'directApply'];
     }
 }
