@@ -147,7 +147,9 @@ final readonly class TypeAssembler
             if ($address !== null) {
                 $place->setProperty('address', $address);
             }
-            $locations[] = $place;
+            if ($address !== null || !empty($data['locationName'])) {
+                $locations[] = $place;
+            }
         }
         if ($mode !== 'OfflineEventAttendanceMode' && !empty($data['onlineUrl'])) {
             $locations[] = $this->typeFactory->create('VirtualLocation')->setProperty('url', (string)$data['onlineUrl']);
