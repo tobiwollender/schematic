@@ -25,5 +25,6 @@ jobs:
           tools: composer:v2
       - run: composer validate --strict
       - run: composer update --no-progress --no-interaction --with-all-dependencies --with "typo3/cms-core:${{ matrix.typo3 }}"
-      - run: find Classes Configuration ext_localconf.php Build/test-instance/packages -name '*.php' -print0 | xargs -0 -n1 php -l
+      - run: find Classes Configuration Tests ext_localconf.php Build/test-instance/packages -name '*.php' -print0 | xargs -0 -n1 php -l
       - run: .Build/bin/typo3 content-blocks:lint
+      - run: .Build/bin/phpunit
