@@ -1,0 +1,24 @@
+name: Publish to TER
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer:v2
+      - run: composer global require typo3/tailor --no-progress --no-interaction
+      # The GitHub archive honours .gitattributes, so TER gets the same files Composer installs.
+      - run: >
+          "$(composer global config bin-dir --absolute)/tailor" ter:publish "${GITHUB_REF_NAME#v}"
+          --artefact="https://github.com/${GITHUB_REPOSITORY}/archive/refs/tags/${GITHUB_REF_NAME}.zip"
+          --comment "$RELEASE_NOTES"
+        env:
+          TYPO3_API_TOKEN: ${{ secrets.TYPO3_API_TOKEN }}
+          RELEASE_NOTES: ${{ github.event.release.body }}

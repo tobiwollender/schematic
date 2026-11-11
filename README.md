@@ -157,6 +157,7 @@ All record types are Content Blocks in `ContentBlocks/RecordTypes/`, the FAQ ele
 - Unit tests live in `Tests/Unit` and need no database: `ddev exec .Build/bin/phpunit`.
 - CI runs Composer validation, PHP lint, `content-blocks:lint` and the unit tests on TYPO3 13.4 and 14.3.
 - A release is a git tag `vX.Y.Z` on `main` plus a GitHub release with notes. The version comes from the tag only.
+- Publishing the GitHub release uploads that version to the TYPO3 Extension Repository through `.github/workflows/publish.yml`. The workflow needs the repository secret `TYPO3_API_TOKEN`.
 - `.gitattributes` keeps `.ddev/`, `.github/`, `Build/` and `Tests/` out of the archives Composer installs.
 
 ## Requirements
