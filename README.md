@@ -4,6 +4,10 @@ Structured data (schema.org JSON-LD) for TYPO3, maintained by editors in normal 
 
 schematic is built on [brotkrueml/schema](https://github.com/brotkrueml/schema), which renders the JSON-LD, and on [Content Blocks](https://github.com/FriendsOfTYPO3/content-blocks), which defines the forms. It adds the editor layer: which data exists, where editors maintain it and how page types fill it automatically.
 
+| Organization record | Structured data of a job page | Generated JSON-LD |
+| --- | --- | --- |
+| ![Organization record with name, logo, contact, address, social profiles and opening hours](.github/images/organization-form.png) | ![Tab "Structured data" in the page properties of a job page](.github/images/job-form.png) | ![Preview of the generated JobPosting JSON-LD in the same form](.github/images/job-preview.png) |
+
 ## Contents
 
 - [How it works](#how-it-works)
